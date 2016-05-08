@@ -1,0 +1,14 @@
+CREATE TABLE posts (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	post VARCHAR(500) NOT NULL,
+	author VARCHAR(100),
+	time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	likes UNSIGNED BIG INT DEFAULT 0,
+	flags INTEGER DEFAULT 0	
+);
+
+/*
+
+INSERT INTO posts (post, author) VALUES ("The first post is born.", "Nim");
+
+*/
