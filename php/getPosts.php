@@ -17,7 +17,7 @@ $NEW = 1;
 
 
 $stream = $_GET['stream']; // FIRE, NEW, etc.
-$x = $_GET['x']; // Number of posts to retrieve.
+$numOfPosts = $_GET['numOfPosts']; // Number of posts to retrieve.
 // $lastId is NULL on the very first query.
 if ($_GET['lastId'] != NULL && is_numeric($_GET['lastId'])) {
 	$lastId = $_GET['lastId'];
@@ -29,7 +29,7 @@ $output = array( // To be output as JSON.
 	"error" => false,
 	"posts" => NULL);
 
-if ($stream == NULL || $x == NULL) {
+if ($stream == NULL || $numOfPosts == NULL) {
 	$output["error"] = true;
 	echo json_encode($output);
 	return;
@@ -38,9 +38,9 @@ if ($stream == NULL || $x == NULL) {
 /* ----- P R E P A R E   &   E X E C U T E ---- */
 
 $sql = new SQLite3("spottedatutm.db");
-$stmt = $sql->prepare("SELECT * FROM posts WHERE id < :lastId ORDER BY id DESC LIMIT :x");
+$stmt = $sql->prepare("SELECT * FROM posts WHERE id < :lastId ORDER BY id DESC LIMIT :numOfPosts");
 $stmt->bindValue(":lastId", $lastId);
-$stmt->bindValue(":x", $x);
+$stmt->bindValue(":numOfPosts", $numOfPosts);
 $result = $stmt->execute();
 
 if ($result) {

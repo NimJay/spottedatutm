@@ -1,13 +1,13 @@
 /*---------------------------------- P O S T ---------------------------------*/
 
 
-function Post () {
-	this.id = 300;
-	this.post = "To the girls with bindis, stop.";
-	this.author = "Nerd";
-	this.time = "2016-05-05 22:39:27";
-	this.likes = 222;
-	this.flags = 15;
+function Post (id, post, author, time, likes, flags) {
+	this.id = id;
+	this.post = post;
+	this.author = author;
+	this.time = time;
+	this.likes = likes;
+	this.flags = flags;
 	this.flagged = 0;
 	this.liked = 1;
 }
@@ -30,7 +30,9 @@ Post.prototype.toHTML = function () {
 			'</div>';
 }
 
-
+Post.prototype.appendToElement = function (element) {
+	element.append(this.toHTML());
+}
 
 /*---------------------------------- T I M E ---------------------------------*/
 

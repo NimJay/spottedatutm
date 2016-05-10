@@ -1,3 +1,6 @@
+// Number of posts to retrieve in each GET request to getPosts.php.
+numOfPosts = 5;
+
 // Streams.
 var FIRE = 0;
 var NEW = 1;
@@ -15,17 +18,51 @@ function isNearBottom() {
 }
 
 function windowScrolled () {
-	if (isNearBottom()) {
+	if (isNearBottom() && !noMorePosts) {
 		loadNextPosts(10);
 	}
 }
 
+
+/*--------------------------------- P O S T S --------------------------------*/
+
 function loadNextPosts (posts) {
-	// Placeholder.
+	
+	// Make a GET request to the server to retreive Posts.
+	$.ajax({
+		type: "GET",
+		url: "php/getPosts.php",
+		data: {"lastId":lastID, "stream":stream, "numOfPosts":numOfPosts},
+		success: function (data) {
+			console.log("Nim: Debug: Success. :)");
+			if (data.error) {
+				return false;
+			}
+			
+			var p;
+			for (i in data.posts){
+				c = data.posts[i];
+				console.log(c); // Nim: Debug.
+				p = new Post(c.id, c.post, c.author, c.time, c.likes, c.flags);
+				p.appendToElement($("#posts"));
+			}
+			if (p) {lastID = p.id;} // Update lastID.
+			if (data.posts.length < numOfPosts) {noMorePosts = true;} // No more posts.
+		},
+		error: function (data) {
+			console.log("Nim: Debug: Error. :(");
+		},
+		complete: function () {searching = false;},
+		dataType: "json"
+	});
+	
+	// Placeholder. 
+	/*
 	for (var i = 0; i < posts; i++) {
 		var p = new Post();
 		$("#posts").append(p.toHTML());
 	}
+	*/
 }
 
 function refresh() {
