@@ -8,6 +8,7 @@ error_reporting(~0);
 
 $post = $_GET['post'];
 $author = $_GET['author'];
+$ip = $_SERVER['REMOTE_ADDR']; // Client's IP address.
 $output = array( // To be output as JSON.
 	"error" => false,
 	"invalid" => false);
@@ -25,9 +26,11 @@ if ($post == NULL) {
 
 $sql = new SQLite3("spottedatutm.db");
 if ($author == NULL) {
-	$stmt = $sql->prepare("INSERT INTO posts (post) VALUES ( :post );");
+	$stmt = $sql->prepare("INSERT INTO posts (post, ip) VALUES ( :post , '" .
+						  $ip . "');");
 } else {
-	$stmt = $sql->prepare("INSERT INTO posts (post, author) VALUES ( :post , :author );");
+	$stmt = $sql->prepare("INSERT INTO posts (post, author, ip) VALUES ( :post , :author , '" .
+						  $ip . "' );");
 	$stmt->bindValue(":author", $author);
 }
 $stmt->bindValue(":post", $post);
@@ -35,7 +38,7 @@ if (!$stmt->execute()) {
 	$output["error"] = true;	
 }
 
-
+echo $_SERVER['REMOTE_ADDR'];
 /* ----------------- C L O S E ---------------- */ 
 
 $stmt->close();

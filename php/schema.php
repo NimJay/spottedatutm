@@ -11,7 +11,7 @@ $db = new SQLite3('spottedatutm.db');
 // Create table.
 /*
 $db->exec("DROP TABLE posts;");
-$db->exec("CREATE TABLE posts (id INTEGER PRIMARY KEY AUTOINCREMENT, post VARCHAR(500) NOT NULL, author VARCHAR(100), time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, likes UNSIGNED BIG INT DEFAULT 0, flags INTEGER DEFAULT 0);");
+$db->exec("CREATE TABLE posts (id INTEGER PRIMARY KEY AUTOINCREMENT, post VARCHAR(500) NOT NULL, author VARCHAR(100), time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, likes UNSIGNED BIG INT DEFAULT 0, flags INTEGER DEFAULT 0, ip VARCHAR(15));");
 */
 
 // Insert the initial posts.
@@ -35,7 +35,8 @@ while ($row = $results->fetchArray()) {
 	. $row["author"] . "</td><td>"
 	. $row["time"] . "</td><td>"
 	. $row["likes"] . "</td><td>"
-	. $row["flags"] . "</td></tr>");
+	. $row["flags"] . "</td><td>"
+	. $row["ip"] . "</td></tr>");
 }
 echo "</table>";
 
