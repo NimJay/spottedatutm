@@ -8,6 +8,7 @@ var NEW = 1;
 var stream = FIRE; // Stream.
 var lastID = Infinity; // ID of last post retrieved.
 var noMorePosts = false; // No more posts left in stream.
+var postsLock = false;
 
 
 /*-------------------------------- S C R O L L -------------------------------*/
@@ -41,6 +42,9 @@ function closePoster() {
 
 function loadNextPosts (posts) {
 	
+	if (postsLock) {return false;} // Already trying to load posts.
+	
+	postsLock = true;
 	// Make a GET request to the server to retreive Posts.
 	$.ajax({
 		type: "GET",
@@ -65,7 +69,7 @@ function loadNextPosts (posts) {
 		error: function (data) {
 			console.log("Nim: Debug: Error. :(");
 		},
-		complete: function () {searching = false;},
+		complete: function () {postsLock = false;},
 		dataType: "json"
 	});
 }
