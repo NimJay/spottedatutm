@@ -55,14 +55,6 @@ function loadNextPosts (posts) {
 		complete: function () {searching = false;},
 		dataType: "json"
 	});
-	
-	// Placeholder. 
-	/*
-	for (var i = 0; i < posts; i++) {
-		var p = new Post();
-		$("#posts").append(p.toHTML());
-	}
-	*/
 }
 
 function refresh() {
