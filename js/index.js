@@ -24,6 +24,19 @@ function windowScrolled () {
 }
 
 
+/*-------------------------------- P O S T E R -------------------------------*/
+
+function openPoster() {
+	$("#header-post").css("color", "rgb(100, 230, 140)");	
+	$("#poster").fadeIn(300);
+}
+
+function closePoster() {
+	$("#header-post").css("color", "rgb(255, 255, 255)");
+	$("#poster").fadeOut(300);
+}
+
+
 /*--------------------------------- P O S T S --------------------------------*/
 
 function loadNextPosts (posts) {
@@ -57,30 +70,35 @@ function loadNextPosts (posts) {
 	});
 }
 
-function refresh() {
+function refreshStream() {
 	
 }
 
 
 $(function () {
 	
+	// Fire.
 	$("#header-fire").click(function (e) {
 		$("#header-new").css("color", "rgb(255, 255, 255)");
 		$("#header-post").css("color", "rgb(255, 255, 255)");
 		$(this).css("color", "rgb(255, 100, 80)");
+		closePoster();
+		stream = FIRE;
+		refreshStream();
 	});
-		
+	
+	// New.
 	$("#header-new").click(function (e) {
 		$("#header-fire").css("color", "rgb(255, 255, 255)");
 		$("#header-post").css("color", "rgb(255, 255, 255)");
 		$(this).css("color", "rgb(50, 150, 255)");
+		closePoster();
+		stream = NEW;
+		refreshStream();
 	});
 	
-	$("#header-post").click(function (e) {
-		$("#header-fire").css("color", "rgb(255, 255, 255)");
-		$("#header-new").css("color", "rgb(255, 255, 255)");
-		$(this).css("color", "rgb(100, 230, 140)");
-	});
+	// Post.
+	$("#header-post").click(openPoster);
 	
 	var bool = false;
 	$(".post-actions-like").hover(function (e) {
@@ -88,7 +106,6 @@ $(function () {
 	}, function (e) {
 		$(this).attr("src", "images/like-" + (1 * bool) + ".png");
 	})
-	
 	
 	$(".post-actions-like").click(function (e) {
 		bool = !bool;
@@ -98,4 +115,11 @@ $(function () {
 	
 	// Scroll.
 	$(window).scroll(windowScrolled);
+	
+	// Poster.
+	$("#poster-close").click(closePoster);
+	
+	
+	// Let's go!
+	$("#header-fire").click();
 });
