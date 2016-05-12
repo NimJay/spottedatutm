@@ -75,7 +75,10 @@ function loadNextPosts (posts) {
 }
 
 function refreshStream() {
-	
+	lastID = Infinity;
+	noMorePosts = false;
+	$("#posts").html("");
+	loadNextPosts(10);
 }
 
 

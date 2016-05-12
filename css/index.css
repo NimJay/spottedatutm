@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	color: rgb(20, 20, 20);
@@ -73,8 +74,8 @@ body {
 }
 
 .post-post {
-	font-size: 1.5em;
-	padding: 10px;
+	font-size: 1.4em;
+	padding: 8px;
 	cursor: pointer;
 }
 

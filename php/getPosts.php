@@ -4,7 +4,7 @@
 ini_set('display_errors', 1);
 error_reporting(~0);
 
-$MAX_ID = 1000;		// Highest post id in database.
+$MAX_ID = 1000000;		// Highest post id in database.
 
 // Categories.
 $FIRE = 0;
