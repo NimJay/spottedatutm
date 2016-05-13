@@ -22,6 +22,9 @@ $db->exec("INSERT INTO posts (post, author) VALUES (\"The second post is born.\"
 $db->exec("INSERT INTO posts (post, author) VALUES (\"The third post is born.\", \"Nim\");");
 $db->exec("INSERT INTO posts (post, author) VALUES (\"The fourth post is born.\", \"Nim\");");
 $db->exec("INSERT INTO posts (post, author) VALUES (\"The fifth post is born.\", \"Nim\");");
+$db->exec("INSERT INTO posts (post, author) VALUES (\"aNyOnE kNoW hOw To FiX a KeYbOaRd?\", \"ZAYN\");");
+$db->exec("INSERT INTO posts (post, author) VALUES (\"I got guns in my head and they won't go.\", \"Cage The Elephants\");");
+
 */
 
 

@@ -3,7 +3,7 @@
 // Error reporting ON.
 ini_set('display_errors', 1);
 error_reporting(~0);
-
+sleep(1);
 /* --------------- G L O B A L S -------------- */
 
 $post = $_GET['post'];
@@ -38,7 +38,7 @@ if (!$stmt->execute()) {
 	$output["error"] = true;	
 }
 
-echo $_SERVER['REMOTE_ADDR'];
+
 /* ----------------- C L O S E ---------------- */ 
 
 $stmt->close();

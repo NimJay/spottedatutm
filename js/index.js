@@ -8,7 +8,8 @@ var NEW = 1;
 var stream = FIRE; // Stream.
 var lastID = Infinity; // ID of last post retrieved.
 var noMorePosts = false; // No more posts left in stream.
-var postsLock = false;
+var postsLock = false; // To be acquired before Post retrieval.
+var postingLock = false; // To be acquired before posting.
 
 
 /*-------------------------------- S C R O L L -------------------------------*/
@@ -28,13 +29,55 @@ function windowScrolled () {
 /*-------------------------------- P O S T E R -------------------------------*/
 
 function openPoster() {
-	$("#header-post").css("color", "rgb(100, 230, 140)");	
+	$("#header-post").css("color", "rgb(100, 230, 140)");
 	$("#poster").fadeIn(300);
+	$("#poster-status").html("");
+	$("#poster-text").focus();
 }
 
 function closePoster() {
 	$("#header-post").css("color", "rgb(255, 255, 255)");
 	$("#poster").fadeOut(300);
+}
+
+/* To be called when [post] is clicked. */
+function post () {
+	
+	if (postingLock) {return false;}
+	postingLock = true;
+	$("#poster-post").css("backgroundColor", "rgba(20, 20, 20, 0.1)");
+	
+	
+	var post = $("#poster-text").val(); // Post.
+	var author = $("#poster-author").val(); // Text.
+	
+	
+	$.ajax({
+		type: "GET",
+		url: "php/post.php",
+		data: {"post":post, "author":author},
+		success: function (data) {
+			console.log(data);
+			if (data.error) {
+				$("#poster-status").html("Whoops, something went wrong at our server. We're sorry.");
+			} else if (data.invalid) {
+				$("#poster-status").html("Your input seems to be invalid.");
+			} else {
+				$("#header-new").click();
+			}
+		},
+		error: function (error) {
+			console.log("Nim: Debug: actual error!");
+			console.log(error);
+			$("#poster-status").html("Whoops, something went wrong at our server. We're sorry.");
+		},
+		complete: function () {
+			// Enable posting.
+			postingLock = false;
+			$("#poster-post").css("backgroundColor", "rgba(20, 20, 20, 0.9)");
+		},
+		dataType: "json"
+	});
 }
 
 
@@ -125,8 +168,9 @@ $(function () {
 	
 	// Poster.
 	$("#poster-close").click(closePoster);
+	$("#poster-post").click(post);
 	
 	
 	// Let's go!
-	$("#header-fire").click();
+	//$("#header-fire").click();
 });
