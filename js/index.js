@@ -46,7 +46,7 @@ function post () {
 	if (postingLock) {return false;}
 	postingLock = true;
 	$("#poster-post").css("backgroundColor", "rgba(20, 20, 20, 0.1)");
-	
+	$("#poster-status").html("Posting...");
 	
 	var post = $("#poster-text").val(); // Post.
 	var author = $("#poster-author").val(); // Text.
@@ -63,11 +63,11 @@ function post () {
 			} else if (data.invalid) {
 				$("#poster-status").html("Your input seems to be invalid.");
 			} else {
+				$("#poster-status").html("Posted.");
 				$("#header-new").click();
 			}
 		},
 		error: function (error) {
-			console.log("Nim: Debug: actual error!");
 			console.log(error);
 			$("#poster-status").html("Whoops, something went wrong at our server. We're sorry.");
 		},
