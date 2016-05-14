@@ -7,8 +7,7 @@ error_reporting(~0);
 // Open database (create if non-existent).
 $db = new SQLite3('spottedatutm.db');
 
-
-// Create table.
+// Create table for Posts.
 /*
 $db->exec("DROP TABLE posts;");
 $db->exec("CREATE TABLE posts (id INTEGER PRIMARY KEY AUTOINCREMENT, post VARCHAR(500) NOT NULL, author VARCHAR(100), time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, likes UNSIGNED BIG INT DEFAULT 0, flags INTEGER DEFAULT 0, ip VARCHAR(15));");
@@ -24,7 +23,6 @@ $db->exec("INSERT INTO posts (post, author) VALUES (\"The fourth post is born.\"
 $db->exec("INSERT INTO posts (post, author) VALUES (\"The fifth post is born.\", \"Nim\");");
 $db->exec("INSERT INTO posts (post, author) VALUES (\"aNyOnE kNoW hOw To FiX a KeYbOaRd?\", \"ZAYN\");");
 $db->exec("INSERT INTO posts (post, author) VALUES (\"I got guns in my head and they won't go.\", \"Cage The Elephants\");");
-
 */
 
 
@@ -42,5 +40,13 @@ while ($row = $results->fetchArray()) {
 	. $row["ip"] . "</td></tr>");
 }
 echo "</table>";
+
+// Create tables for Likes and Flags.
+/*
+$db->exec("DROP TABLE likes;");
+$db->exec("CREATE TABLE likes (id INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ip VARCHAR(15) NOT NULL, PRIMARY KEY(id, ip), FOREIGN KEY (id) REFERENCES posts(id));");
+$db->exec("DROP TABLE flags;");
+$db->exec("CREATE TABLE flags (id INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ip VARCHAR(15) NOT NULL, PRIMARY KEY(id, ip), FOREIGN KEY (id) REFERENCES posts(id));");
+*/
 
 ?>
