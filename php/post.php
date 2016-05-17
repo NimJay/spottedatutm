@@ -3,7 +3,7 @@
 // Error reporting ON.
 ini_set('display_errors', 1);
 error_reporting(~0);
-sleep(1);
+
 /* --------------- G L O B A L S -------------- */
 
 $post = $_GET['post'];
