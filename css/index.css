@@ -20,7 +20,7 @@ body {
 	top: 0px;
 	left: 0px;
 	text-align: center;
-	background-color: rgba(20, 20, 20, 0.9);
+	background-color: rgba(20, 20, 20, 0.92);
 	z-index: +1;
 }
 
@@ -110,6 +110,7 @@ body {
 }
 
 .post-actions-flag {
+	position: relative;
 	margin-right: 10px;
 	cursor: pointer;
 }
@@ -120,7 +121,7 @@ body {
 
 
 #poster {
-	/*display: none;*/ /* Nim: To be uncommented. */
+	display: none;
 	width: 80%;
 	padding: 20px;
 	position: fixed;

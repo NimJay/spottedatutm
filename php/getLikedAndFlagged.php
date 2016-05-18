@@ -18,7 +18,7 @@ $output = array( // To be output as JSON.
 
 $sql = new SQLite3("spottedatutm.db");
 
-echo $ip;
+
 // Liked Posts.
 $stmt = $sql->prepare("SELECT id FROM likes WHERE ip = '" . $ip . "'");
 $result = $stmt->execute();

@@ -10,7 +10,7 @@ var lastID = Infinity; // ID of last post retrieved.
 var noMorePosts = false; // No more posts left in stream.
 var postsLock = false; // To be acquired before Post retrieval.
 var postingLock = false; // To be acquired before posting.
-
+var posts = []; // List of loaded Posts.
 
 /*-------------------------------- S C R O L L -------------------------------*/
 
@@ -83,7 +83,7 @@ function post () {
 
 /*--------------------------------- P O S T S --------------------------------*/
 
-function loadNextPosts (posts) {
+function loadNextPosts (numOfPosts) {
 	
 	if (postsLock) {return false;} // Already trying to load posts.
 	
@@ -103,8 +103,8 @@ function loadNextPosts (posts) {
 			for (i in data.posts){
 				c = data.posts[i];
 				console.log(c); // Nim: Debug.
-				p = new Post(c.id, c.post, c.author, c.time, c.likes, c.flags);
-				p.appendToElement($("#posts"));
+				posts.push(new Post(c.id, c.post, c.author, c.time, c.likes, c.flags));
+				posts[posts.length - 1].appendToElement($("#posts"));
 			}
 			if (p) {lastID = p.id;} // Update lastID.
 			if (data.posts.length < numOfPosts) {noMorePosts = true;} // No more posts.
@@ -121,6 +121,7 @@ function refreshStream() {
 	lastID = Infinity;
 	noMorePosts = false;
 	$("#posts").html("");
+	posts = [];
 	loadNextPosts(10);
 }
 
@@ -150,19 +151,6 @@ $(function () {
 	// Post.
 	$("#header-post").click(openPoster);
 	
-	var bool = false;
-	$(".post-actions-like").hover(function (e) {
-		$(this).attr("src", "images/like-" + (1 * !bool) + ".png");
-	}, function (e) {
-		$(this).attr("src", "images/like-" + (1 * bool) + ".png");
-	})
-	
-	$(".post-actions-like").click(function (e) {
-		bool = !bool;
-		$(this).attr("src", "images/like-" + (1 * bool) + ".png");
-		$(this).animate({top:"-10px"}, 300, function () {$(this).animate({top:"0px"}, 300);});
-	});
-	
 	// Scroll.
 	$(window).scroll(windowScrolled);
 	
@@ -172,5 +160,5 @@ $(function () {
 	
 	
 	// Let's go!
-	//$("#header-fire").click();
+	$("#header-fire").click();
 });
