@@ -95,6 +95,7 @@ function loadNextPosts (numOfPosts) {
 		data: {"lastId":lastID, "stream":stream, "numOfPosts":numOfPosts},
 		success: function (data) {
 			console.log("Nim: Debug: Success. :)");
+			console.log(data);
 			if (data.error) {
 				return false;
 			}
@@ -105,7 +106,9 @@ function loadNextPosts (numOfPosts) {
 				posts.push(new Post(c.id, c.post, c.author, c.time, c.likes, c.flags));
 				posts[posts.length - 1].appendToElement($("#posts"));
 			}
-			lastID = posts[posts.length - 1].id; // Update lastID.
+			if (posts.length) {
+				lastID = posts[posts.length - 1].id; // Update lastID.
+			}
 			if (data.posts.length < numOfPosts) {noMorePosts = true;} // No more posts.
 		},
 		error: function (data) {
