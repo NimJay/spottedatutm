@@ -39,6 +39,9 @@ if ($stream == NULL || $numOfPosts == NULL) {
 
 $sql = new SQLite3("spottedatutm.db");
 $stmt = $sql->prepare("SELECT * FROM posts WHERE id < :lastId ORDER BY id DESC LIMIT :numOfPosts");
+if ($stream == $FIRE) {
+	$stmt = $sql->prepare("SELECT * FROM posts WHERE id < :lastId AND likes > 0 AND flags < likes ORDER BY id DESC LIMIT :numOfPosts");
+}
 $stmt->bindValue(":lastId", $lastId);
 $stmt->bindValue(":numOfPosts", $numOfPosts);
 $result = $stmt->execute();
