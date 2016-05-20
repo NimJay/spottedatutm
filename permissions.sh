@@ -18,3 +18,7 @@ chmod 704 js/lib/*.js
 
 # PHP
 chmod 701 php
+
+# SQLite on Nim's personal computer.
+chmod 706 php/spottedatutm.db
+chmod 703 php/
