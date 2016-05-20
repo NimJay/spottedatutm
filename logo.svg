@@ -26,8 +26,8 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4726923"
-     inkscape:cx="300.18441"
-     inkscape:cy="716.78594"
+     inkscape:cx="305.59502"
+     inkscape:cy="645.62967"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -53,13 +53,13 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:#f0631c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:1"
+       style="fill:#a05a32;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:1"
        d="M 277.85714,282.3622 430.71429,483.95793 276.13271,483.6628 Z"
        id="path4189"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc"
-       inkscape:export-xdpi="17.055857"
-       inkscape:export-ydpi="17.055857"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015"
        inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png" />
     <path
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:1"
@@ -67,27 +67,49 @@
        id="path4189-5"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc"
-       inkscape:export-xdpi="17.055857"
-       inkscape:export-ydpi="17.055857"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015"
        inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png" />
     <rect
-       style="opacity:1;fill:#f06928;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#009696;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4267"
+       width="12.632676"
+       height="84.345352"
+       x="228.6452"
+       y="215.82803"
+       transform="matrix(0.99727136,-0.07382293,0.11690354,0.99314327,0,0)"
+       inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015" />
+    <rect
+       style="opacity:1;fill:#aa5f32;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4138"
        width="32.829956"
        height="59.598999"
        x="402.33682"
        y="-23.960468"
        transform="matrix(0.80375013,0.594967,-0.594967,0.80375013,0,0)"
-       inkscape:export-xdpi="17.055857"
-       inkscape:export-ydpi="17.055857"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015"
        inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#009696;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4267-8"
+       width="13.553247"
+       height="93.69574"
+       x="386.34317"
+       y="132.46675"
+       transform="matrix(0.98146421,0.19164549,-0.4609039,0.88745005,0,0)"
+       inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015" />
     <path
-       style="fill:#f06928;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;opacity:1"
+       style="fill:#aa5f32;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;opacity:1"
        d="m 223.21429,348.43363 16.42857,-91.42857 95.71428,1.07143 -29.64285,154.28571 -82.5,0 z"
        id="path4236"
        inkscape:connector-curvature="0"
-       inkscape:export-xdpi="17.055857"
-       inkscape:export-ydpi="17.055857"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015"
        inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png" />
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -97,19 +119,19 @@
        x="222.85713"
        y="371.37125"
        ry="0"
-       inkscape:export-xdpi="17.055857"
-       inkscape:export-ydpi="17.055857"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015"
        inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png" />
     <rect
-       style="opacity:1;fill:#f06928;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#aa5f32;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4138-4"
        width="26.263966"
        height="55.053314"
        x="119.73228"
        y="295.79062"
        transform="matrix(0.92994963,-0.36768694,0.36768694,0.92994963,0,0)"
-       inkscape:export-xdpi="17.055857"
-       inkscape:export-ydpi="17.055857"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015"
        inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png" />
     <rect
        style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -119,8 +141,32 @@
        x="230.8517"
        y="382.75961"
        ry="0"
-       inkscape:export-xdpi="17.055857"
-       inkscape:export-ydpi="17.055857"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015"
        inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#009696;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4299"
+       width="10.864456"
+       height="33.951424"
+       x="199.8614"
+       y="285.7782"
+       transform="matrix(0.93591942,-0.3522142,0.3522142,0.93591942,0,0)"
+       inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#009696;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4307"
+       width="10.185436"
+       height="24.445023"
+       x="338.47946"
+       y="11.164246"
+       transform="matrix(0.82858721,0.55986002,-0.55986002,0.82858721,0,0)"
+       inkscape:transform-center-x="-3.7094775"
+       inkscape:transform-center-y="6.7956129"
+       inkscape:export-filename="/home/nim/Desktop/spottedatutm/images/logo-small.png"
+       inkscape:export-xdpi="15.392015"
+       inkscape:export-ydpi="15.392015" />
   </g>
 </svg>
