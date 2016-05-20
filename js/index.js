@@ -99,14 +99,13 @@ function loadNextPosts (numOfPosts) {
 				return false;
 			}
 			
-			var p;
 			for (i in data.posts){
 				c = data.posts[i];
 				console.log(c); // Nim: Debug.
 				posts.push(new Post(c.id, c.post, c.author, c.time, c.likes, c.flags));
 				posts[posts.length - 1].appendToElement($("#posts"));
 			}
-			if (p) {lastID = p.id;} // Update lastID.
+			lastID = posts[posts.length - 1].id; // Update lastID.
 			if (data.posts.length < numOfPosts) {noMorePosts = true;} // No more posts.
 		},
 		error: function (data) {
