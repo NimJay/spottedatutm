@@ -9,6 +9,7 @@ chmod 701 css
 # Images
 chmod 701 images
 chmod 704 images/*.png
+chmod 704 images/logo.svg
 
 # JavaScript
 chmod 701 js
