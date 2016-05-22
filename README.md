@@ -1,5 +1,5 @@
 # SpottedAtUTM
-![alt text](https://raw.githubusercontent.com/NimJay/spottedatutm/develop/logo.svg "Spotted At UTM")
+![alt text](http://cslinux.utm.utoronto.ca/~jayawar9/spottedatutm/images/logo.svg "Spotted At UTM")
 A web application that allows students of UTM to broadcast anonymous "spots" (messages/shout-outs).
 
 ### Languages & Libraries Used
