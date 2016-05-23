@@ -30,6 +30,7 @@ function windowScrolled () {
 
 function openLogin () {
 	$("#header-login").css("color", "rgb(100, 230, 140)");
+	closePoster();
 	$("#login").fadeIn(300);
 	$("#login-status").html("");
 	$("#login-email").focus();
@@ -48,6 +49,7 @@ function login () {
 
 function openPoster() {
 	$("#header-post").css("color", "rgb(100, 230, 140)");
+	closeLogin();
 	$("#poster").fadeIn(300);
 	$("#poster-status").html("");
 	$("#poster-text").focus();
