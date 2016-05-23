@@ -1,0 +1,84 @@
+/**
+ * Colors used:
+ * Grey: rgb(20, 20, 20);
+ * Red: rgb(255, 100, 80);
+ * Blue: rgb(50, 150, 255);
+ * Teal: rgb(100, 230, 140);
+ *
+ **/
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: rgb(20, 20, 20);
+	background-color: rgb(50, 150, 255);
+}
+
+input {
+	text-align: center;
+	font-size: 0.9rem;
+	padding: 10px;
+	color: rgb(20, 20, 20);
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	position: fixed;
+	top: 10%;
+	left: -10%;
+	width: 10%;
+}
+
+/*-------------------------------- S I G N U P -------------------------------*/
+
+#signup {
+	padding: 30px;
+	width: 70%;
+	position: absolute;
+	top: 10%;
+	left: 13%;
+	margin: auto;
+	margin-bottom: 20px;
+	text-align: center;
+	background-color: white;
+	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+#signup-status {
+	padding: 10px;
+	color: rgb(20, 20, 2);
+}
+
+#signup-email, #signup-password, #signup-confirm {
+	min-width: 150px;
+	margin: auto;
+	margin-top: 15px;
+	width: 60%;
+}
+
+#signup-signup {
+	font-size: 1rem;
+	padding: 15px;
+	width: 60%;
+	margin: auto;
+	margin-top: 15px;
+	color: rgb(255, 255, 255);
+	background-color: rgba(20, 20, 20, 0.9);
+	cursor: pointer;
+}
+
+#signup-signup:hover {
+	color: rgb(50, 150, 255);
+}
+
+#signup-signup:active {
+	color: rgb(255, 255, 255);
+}
