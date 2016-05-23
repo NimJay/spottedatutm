@@ -1,3 +1,13 @@
+/**
+ * Colors used:
+ * Grey: rgb(20, 20, 20);
+ * Red: rgb(255, 100, 80);
+ * Blue: rgb(50, 150, 255);
+ * Teal: rgb(100, 230, 140);
+ *
+ **/
+
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 
@@ -7,7 +17,15 @@ body {
 	color: rgb(20, 20, 20);
 }
 
+input {
+	text-align: center;
+	font-size: 0.9rem;
+	padding: 10px;
+}
 
+a {
+	text-decoration: none;
+}
 
 /*-------------------------------- H E A D E R -------------------------------*/
 
@@ -26,7 +44,7 @@ body {
 }
 
 
-#header-fire, #header-new, #header-post {
+#header-fire, #header-new, #header-post, #header-login {
 	position: fixed;
 	padding: 14px;
 	padding-left: 20px;
@@ -38,16 +56,17 @@ body {
 	color: rgb(255, 255, 255);
 }
 
-#header-fire {right: 181px;}
-#header-new {right: 116px;}
-#header-post {right: 50px;}
+#header-fire {right: 245px;}
+#header-new {right: 180px;}
+#header-post {right: 114px;}
+#header-login {right: 50px;}
 
 
-#header-fire:hover, #header-new:hover, #header-post:hover {
+#header-fire:hover, #header-new:hover, #header-post:hover, #header-login:hover {
 	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
 }
 
-#header-fire:active, #header-new:active, #header-post:active {
+#header-fire:active, #header-new:active, #header-post:active, #header-login:active {
 	color: white;
 	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.0);
 }
@@ -126,8 +145,7 @@ body {
 
 /*-------------------------------- P O S T E R -------------------------------*/
 
-
-#poster {
+.popup {
 	display: none;
 	width: 80%;
 	padding: 20px;
@@ -138,9 +156,22 @@ body {
 	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
 	background-color: rgba(255, 255, 255, 0.95);
 	z-index: +2;
+	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+	background-color: rgba(255, 255, 255, 0.95);
+	z-index: +2;
 }
 
-#poster-close {
+#poster {
+	text-align: center;
+}
+
+.button {
+	color: rgb(255, 255, 255);
+	background-color: rgba(20, 20, 20, 0.9);
+	cursor: pointer;
+}
+
+.close {
 	font-size: 0.9rem;
 	width: 60px;
 	padding: 5px;
@@ -149,22 +180,17 @@ body {
 	right: 0px;
 }
 
-#poster-close:hover {
+.close:hover {
 	color: rgb(255, 100, 80);
 	background-color: rgba(20, 20, 20, 0.9);
 }
 
-#poster-post {
-	font-size: 1rem;
-	width: 50%;
-	margin: auto;
-	margin-top: 10px;
-	padding: 10px;
+#poster-status {
+	font-size: 0.8em;
+	min-height: 18px;
+	color: rgb(255, 100, 80);
 }
 
-#poster-post:hover {
-	color: rgb(100, 230, 140);	
-}
 
 #poster-text {
 	font-family: 'Open Sans', sans-serif;
@@ -179,20 +205,66 @@ body {
 }
 
 #poster-author {
-	font-size: 0.9rem;
 	margin-top: 10px;
 	width: 50%;
+}
+
+#poster-post {
+	font-size: 1rem;
+	width: 50%;
+	margin: auto;
+	margin-top: 10px;
 	padding: 10px;
 }
 
-#poster-status {
+#poster-post:hover {
+	color: rgb(100, 230, 140);	
+}
+
+
+/*--------------------------------- L O G I N --------------------------------*/
+
+#login {
+	text-align: center;
+}
+
+#login-status {
 	font-size: 0.8em;
 	min-height: 18px;
 	color: rgb(255, 100, 80);
 }
 
-.button {
-	color: rgb(255, 255, 255);
-	background-color: rgba(20, 20, 20, 0.9);
+#login-email {
+	margin-top: 10px;
+	width: 50%;
+}
+
+#login-password {
+	margin-top: 10px;
+	width: 50%;
+}
+
+#login-login {
+	font-size: 1rem;
+	width: 50%;
+	margin: auto;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+#login-forgot {
+	margin-top: 10px;
+}
+
+#login-forgot a {
+	font-size: 0.8em;
+	margin-top: 10px;
+	color: rgb(140, 140, 140);
+	cursor: pointer;
+}
+
+#login-signup a {
+	font-size: 0.9em;
+	color: rgb(50, 150, 255);
 	cursor: pointer;
 }

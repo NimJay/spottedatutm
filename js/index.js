@@ -26,6 +26,24 @@ function windowScrolled () {
 }
 
 
+/*--------------------------------- L O G I N --------------------------------*/
+
+function openLogin () {
+	$("#header-login").css("color", "rgb(100, 230, 140)");
+	$("#login").fadeIn(300);
+	$("#login-status").html("");
+	$("#login-email").focus();
+}
+
+function closeLogin () {
+	$("#header-login").css("color", "rgb(255, 255, 255)");
+	$("#login").fadeOut(300);
+}
+
+function login () {
+	
+}
+
 /*-------------------------------- P O S T E R -------------------------------*/
 
 function openPoster() {
@@ -150,17 +168,23 @@ $(function () {
 		refreshStream();
 	});
 	
-	// Post.
+	// Login.
+	$("#header-login").click(openLogin);
+	$("#login-close").click(closeLogin);
+	$("#login-login").click(login);
+	
+	// Poster.
 	$("#header-post").click(openPoster);
+	$("#poster-close").click(closePoster);
+	$("#poster-post").click(post);
 	
 	// Scroll.
 	$(window).scroll(windowScrolled);
 	
-	// Poster.
-	$("#poster-close").click(closePoster);
-	$("#poster-post").click(post);
-	
-	
 	// Let's go!
-	$("#header-fire").click();
+	if (window.location.hash.substr(1) == "new") {
+		$("#header-new").click();
+	} else {
+		$("#header-fire").click();
+	}
 });
