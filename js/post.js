@@ -233,12 +233,12 @@ function unflag (id) {
 var liked = []; // IDs of liked Posts.
 var flagged = []; // IDs of Flagged Posts.
 
-$(function () {	
+function setLikedAndFlagged () {
 	$.ajax({
 		type: "GET",
 		url: "php/getLikedAndFlagged.php",
 		success: function (data) {
-			console.log("Nim: Debug: getLikedAndFlagged.php");
+			console.log("GET php/getLikedAndFlagged.php");
 			console.log(data);
 			
 			if (data.error) {
@@ -250,4 +250,8 @@ $(function () {
 		},
 		dataType: "json"
 	});
+}
+
+$(function () {	
+
 });
