@@ -44,7 +44,7 @@ a {
 }
 
 
-#header-fire, #header-new, #header-post, #header-login {
+#header-fire, #header-new, #header-post, #header-login, #header-logout {
 	position: fixed;
 	padding: 14px;
 	padding-left: 20px;
@@ -59,14 +59,15 @@ a {
 #header-fire {right: 245px;}
 #header-new {right: 180px;}
 #header-post {right: 114px;}
-#header-login {right: 50px;}
+#header-login {display: none; right: 50px;}
+#header-logout {display: none; right: 45px;}
 
 
-#header-fire:hover, #header-new:hover, #header-post:hover, #header-login:hover {
+#header-fire:hover, #header-new:hover, #header-post:hover, #header-login:hover, #header-logout:hover {
 	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
 }
 
-#header-fire:active, #header-new:active, #header-post:active, #header-login:active {
+#header-fire:active, #header-new:active, #header-post:active, #header-login:active, #header-logout:active {
 	color: white;
 	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.0);
 }
