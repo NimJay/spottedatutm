@@ -67,7 +67,7 @@ function login () {
 			} else {
 				$("#header-login").fadeOut(300, function () {$("#header-logout").fadeIn(300);});
 				$("#login-status").html("Logged in.");
-				Cookies.set("id", data.id);
+				Cookies.set("id", data.id, {path:"/"});
 				closeLogin();
 			}
 		},
@@ -85,6 +85,9 @@ function login () {
 }
 
 function logout () {
+	
+	Cookies.remove("id", {path:"/"});
+	
 	$.ajax({
 		type: "POST",
 		url: "php/logout.php",
@@ -98,8 +101,6 @@ function logout () {
 		},
 		dataType: "json"
 	});
-		
-	Cookies.remove("id");
 }
 
 /*-------------------------------- P O S T E R -------------------------------*/
@@ -242,7 +243,7 @@ $(function () {
 	$(window).scroll(windowScrolled);
 	
 	// Let's go!
-	if (Cookies.get("id")) {$("#header-logout").fadeIn(300);} 
+	if (Cookies.get("id", {path:'/'})) {$("#header-logout").fadeIn(300);}
 	else {$("#header-login").fadeIn(300);}
 	if (window.location.hash.substr(1) == "new") {
 		$("#header-new").click();
