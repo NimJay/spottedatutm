@@ -2,6 +2,12 @@
 
 var signupLock = false;
 
+function signupStatus(status, newColor) {
+	$("#signup-status").css({"color":newColor});
+	$("#signup-status").html(status);
+	return true;
+}
+
 function submitOnEnter (event) {
 	if (event.keyCode == 13) {
 		signup();
@@ -12,32 +18,25 @@ function submitOnEnter (event) {
 
 function verify () {
 	
-	function _updateStatus(status, newColor) {
-		$("#signup-status").css({"color":newColor});
-		$("#signup-status").html(status);
-		
-		return true;
-	}
-	
 	var email = $("#signup-email").val();
 	var password = $("#signup-password").val();
 	var confirm = $("#signup-confirm").val();
 	
 	// Email.
 	if (!(/^(.)+@(mail\.)?utoronto\.ca$|^(.)+@utmsu\.ca$/i.test(email))) {
-		return !_updateStatus("Your email must end in '@mail.utoronto.ca', '@utoronto.ca', or '@utmsu.ca'.", "rgb(255, 100, 80)");
+		return !signupStatus("Your email must end in '@mail.utoronto.ca', '@utoronto.ca', or '@utmsu.ca'.", "rgb(255, 100, 80)");
 	}
 	
 	if (password.length < 6) {
-		return !_updateStatus("Password must be at least 6 characters long.", "rgb(255, 100, 80)");
+		return !signupStatus("Password must be at least 6 characters long.", "rgb(255, 100, 80)");
 	}
 	
 	if (password != confirm) {
-		return !_updateStatus("Password and confirmation do match.", "rgb(255, 100, 80)");
+		return !signupStatus("Password and confirmation do match.", "rgb(255, 100, 80)");
 	}
 	
 	
-	return _updateStatus("Looks good. :)", "rgb(50, 150, 255)");
+	return signupStatus("Looks good. :)", "rgb(50, 150, 255)");
 }
 
 function signup () {
@@ -59,9 +58,9 @@ function signup () {
 				console.log("POST php/signup.php");
 				console.log(data);
 				if (data.error || data.invalid) {
-					$("#signup-status").html("Whoops, something went wrong at our server. We're sorry.");
+					signupStatus("Sorry, something went wrong at our server.", "rgb(255, 100, 80)");
 				} else if (data.exists) {
-					$("#signup-status").html("Email already in use.");
+					signupStatus("Email already in use.", "rgb(255, 100, 80)");
 				} else {
 					$("#signup-status").html("");
 					// Login!
@@ -88,7 +87,7 @@ function signup () {
 			},
 			error: function (error) {
 				console.log(error);
-				$("#login-status").html("Whoops, something went wrong at our server. We're sorry.");
+				signupStatus("Whoops, sorry, something went wrong at out server.", "rgb(255, 100, 80)");
 			},
 			complete: function () {
 				// Enable posting.
