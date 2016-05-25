@@ -70,10 +70,12 @@ $stmt = $sql->prepare("INSERT INTO verifications (verification, user) VALUES ( \
 $stmt->bindValue(":email", $email);
 $result = $stmt->execute();
 $email = "To verify your account for SpottedAtUTM, please go here:" . "http://localhost/spottedatutm2/verify.html?verification=" . $verification . "email=" . $email;
+/* Nim: Debug: To be uncommented.
 if (!mail($email, 'SpottedAtUTM Verification.', $email)) {
 	return setAndEcho($output, "error", true);
 }
-
+*/
+	
 /* ------------- A U   R E V O I R ------------ */
 
 $stmt->close();
