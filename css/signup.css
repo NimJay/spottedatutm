@@ -52,7 +52,7 @@ a {
 }
 
 #signup-status {
-	height: 30px;
+	min-height: 30px;
 	margin-bottom: 10px;
 	color: rgb(20, 20, 2);
 }
