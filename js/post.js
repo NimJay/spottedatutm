@@ -38,6 +38,13 @@ Post.prototype.appendToElement = function (element) {
 	
 	// Make [like] buttons functional.
 	$("#post-" + this.id + " .post-actions-like").click(function () {
+		
+		// Must be logged in.
+		if (!getUserID()) {
+			$("#login-status").html("You must be logged in to like posts.");
+			return openLogin();
+		}
+		
 		if (post.liked) {
 			unlike(post.id);
 			post.likes--;
@@ -54,6 +61,13 @@ Post.prototype.appendToElement = function (element) {
 	
 	// Make [flag] buttons functional.
 	$("#post-" + this.id + " .post-actions-flag").click(function () {
+		
+		// Must be logged in.
+		if (!getUserID()) {
+			$("#login-status").html("You must be logged in to flag posts.");
+			return openLogin();
+		}
+		
 		if (post.flagged) {
 			unflag(post.id);
 			post.flags--;
@@ -129,12 +143,12 @@ function timePhrase (time) {
 
 
 function like (id) {
-	console.log("ID: " + id + "<--");
+	
 	// Add id to liked if not already added.
 	if (liked.indexOf(id) == -1) {liked.push(id);}
 	
 	$.ajax({
-		type: "GET",
+		type: "POST",
 		url: "php/like.php",
 		data: {"id":id},
 		success: function (data) {
@@ -159,7 +173,7 @@ function unlike (id) {
 	if (i != -1) {liked.splice(i, 1);}
 	
 	$.ajax({
-		type: "GET",
+		type: "POST",
 		url: "php/unlike.php",
 		data: {"id":id},
 		success: function (data) {
@@ -181,11 +195,12 @@ function unlike (id) {
 /*---------------------------------- F L A G ---------------------------------*/
 
 function flag (id) {
+	
 	// Add id to flagged if not already added.
 	if (flagged.indexOf(id) == -1) {flagged.push(id);}
 	
 	$.ajax({
-		type: "GET",
+		type: "POST",
 		url: "php/flag.php",
 		data: {"id":id},
 		success: function (data) {
@@ -197,7 +212,7 @@ function flag (id) {
 			} else if (data.invalid) {
 				// Invalid.
 			} else {
-	
+				
 			}
 		},
 		dataType: "json"
@@ -205,12 +220,13 @@ function flag (id) {
 }
 
 function unflag (id) {
+	
 	// Remove from flagged if exists.
 	var i = flagged.indexOf(id);
 	if (i != -1) {flagged.splice(i, 1);}
 	
 	$.ajax({
-		type: "GET",
+		type: "POST",
 		url: "php/unflag.php",
 		data: {"id":id},
 		success: function (data) {
@@ -233,7 +249,7 @@ function unflag (id) {
 var liked = []; // IDs of liked Posts.
 var flagged = []; // IDs of Flagged Posts.
 
-function setLikedAndFlagged () {
+function setLikedAndFlagged () {	
 	$.ajax({
 		type: "GET",
 		url: "php/getLikedAndFlagged.php",

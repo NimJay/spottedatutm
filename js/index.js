@@ -103,9 +103,20 @@ function logout () {
 	});
 }
 
+function getUserID () {
+	return Cookies.get("id", {path:'/'});
+}
+
 /*-------------------------------- P O S T E R -------------------------------*/
 
 function openPoster() {
+	
+	// Must be logged in.
+	if (!getUserID()) {
+		$("#login-status").html("You must be logged in to post."); 
+		return openLogin();
+	}
+	
 	$("#header-post").css("color", "rgb(100, 230, 140)");
 	closeLogin();
 	$("#poster").fadeIn(300);
@@ -243,7 +254,7 @@ $(function () {
 	$(window).scroll(windowScrolled);
 	
 	// Let's go!
-	if (Cookies.get("id", {path:'/'})) {$("#header-logout").fadeIn(300);}
+	if (getUserID()) {$("#header-logout").fadeIn(300);}
 	else {$("#header-login").fadeIn(300);}
 	if (window.location.hash.substr(1) == "new") {
 		$("#header-new").click();
