@@ -2,7 +2,8 @@
 
 // Authorization.
 if ($_GET['password'] != "framenumber") {
-	echo "Unauthorized.";
+	echo "<h3>Unauthorized; hence, database was not reset.</h3>";
+	showTables();
 	return;
 }
 
@@ -19,11 +20,12 @@ $db->exec("DROP TABLE users;");
 $db->exec("DROP TABLE posts;");
 $db->exec("DROP TABLE likes;");
 $db->exec("DROP TABLE flags;");
+$db->exec("DROP TABLE verifications;");
 $db->exec("CREATE TABLE users ( id INTEGER NOT NULL PRIMARY KEY, email VARCHAR(255) NOT NULL, password VARCHAR(50), birth TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, verified BOOLEAN NOT NULL );");
 $db->exec("CREATE TABLE posts ( id INTEGER PRIMARY KEY AUTOINCREMENT, post VARCHAR(500) NOT NULL, author VARCHAR(100), user INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, likes UNSIGNED BIG INT DEFAULT 0, flags INTEGER DEFAULT 0, ip VARCHAR(15), FOREIGN KEY (user) REFERENCES users(id) );");
 $db->exec("CREATE TABLE likes ( post INTEGER NOT NULL, user INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ip VARCHAR(15) NOT NULL, PRIMARY KEY(post, user), FOREIGN KEY (post) REFERENCES posts(id), FOREIGN KEY (user) REFERENCES users(id) );");
 $db->exec("CREATE TABLE flags ( post INTEGER NOT NULL, user INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ip VARCHAR(15) NOT NULL, PRIMARY KEY(post, user), FOREIGN KEY (post) REFERENCES posts(id), FOREIGN KEY (user) REFERENCES users(id) );");
-
+$db->exec("CREATE TABLE verifications ( verification VARCHAR(32) NOT NULL, user INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, FOREIGN KEY (user) REFERENCES users(id) );");
 
 // Insert the initial user, and posts.
 $db->exec("DELETE FROM users WHERE 1=1");
@@ -35,60 +37,79 @@ $db->exec("INSERT INTO posts (post, user, time) VALUES (\"To the guy in MGM101 w
 $db->exec("INSERT INTO posts (post, author, user, time) VALUES (\"Shout-outs to the second-floor janitors at DH for keeping it real.\", \"CSC Student\", 1, \"2016-05-18 16:02:11\");");
 $db->exec("INSERT INTO posts (post, author, user, time) VALUES (\"Shout-out to the deer I saw yesterday.\", \"Fourth Year\", 1, \"2016-05-19 16:16:18\");");
 
+showTables();
 
-// Display Users.
-$results = $db->query('SELECT * FROM users');
-echo "<table>";
-while ($row = $results->fetchArray()) {
-    echo("<tr><td>"
-	. $row["id"] . "</td><td>"
-	. $row["email"] . "</td><td>"
-	. $row["password"] . "</td><td>"
-	. $row["birth"] . "</td><td>"
-	. $row["verified"] . "</td><td>");
+function showTables() {
+	
+	// Style tables.
+	echo "<style> td {background-color: #f0f0f0; padding: 10px;} table {margin-bottom: 20px;}</style>";
+	echo "<table cellspacing=5>";
+	
+	$db = new SQLite3('spottedatutm.db');
+	// Display Users.
+	$results = $db->query('SELECT * FROM users');
+	echo "<table>";
+	while ($row = $results->fetchArray()) {
+		echo("<tr><td>"
+		. $row["id"] . "</td><td>"
+		. $row["email"] . "</td><td>"
+		. $row["password"] . "</td><td>"
+		. $row["birth"] . "</td><td>"
+		. $row["verified"] . "</td></tr>");
+	}
+	echo "</table>";
+
+
+	// Display Posts.
+	$results = $db->query('SELECT * FROM posts');
+	echo "<table>";
+	while ($row = $results->fetchArray()) {
+		echo("<tr><td>"
+		. $row["id"] . "</td><td>"
+		. $row["post"] . "</td><td>"
+		. $row["author"] . "</td><td>"
+		. $row["time"] . "</td><td>"
+		. $row["likes"] . "</td><td>"
+		. $row["flags"] . "</td><td>"
+		. $row["ip"] . "</td></tr>");
+	}
+	echo "</table>";
+
+
+	// Display Likes.
+	$results = $db->query('SELECT * FROM likes');
+	echo "<table>";
+	while ($row = $results->fetchArray()) {
+		echo("<tr><td>"
+		. $row["post"] . "</td><td>"
+		. $row["user"] . "</td><td>"
+		. $row["time"] . "</td><td>"
+		. $row["ip"] . "</td></tr>");
+	}
+	echo "</table>";
+
+
+	// Display Flags.
+	$results = $db->query('SELECT * FROM flags');
+	echo "<table>";
+	while ($row = $results->fetchArray()) {
+		echo("<tr><td>"
+		. $row["post"] . "</td><td>"
+		. $row["user"] . "</td><td>"
+		. $row["time"] . "</td><td>"
+		. $row["ip"] . "</td></tr>");
+	}
+	echo "</table>";
+	
+	// Display Verifcations.
+	$results = $db->query('SELECT * FROM verifications');
+	echo "<table>";
+	while ($row = $results->fetchArray()) {
+		echo("<tr><td>"
+		. $row["verification"] . "</td><td>"
+		. $row["user"] . "</td><td>"
+		. $row["time"] . "</td></tr>");
+	}
+	echo "</table>";
 }
-echo "</table>";
-
-
-// Display Posts.
-$results = $db->query('SELECT * FROM posts');
-echo "<table>";
-while ($row = $results->fetchArray()) {
-    echo("<tr><td>"
-	. $row["id"] . "</td><td>"
-	. $row["post"] . "</td><td>"
-	. $row["author"] . "</td><td>"
-	. $row["time"] . "</td><td>"
-	. $row["likes"] . "</td><td>"
-	. $row["flags"] . "</td><td>"
-	. $row["ip"] . "</td></tr>");
-}
-echo "</table>";
-
-
-// Display Likes.
-$results = $db->query('SELECT * FROM likes');
-echo "<table>";
-while ($row = $results->fetchArray()) {
-    echo("<tr><td>"
-	. $row["post"] . "</td><td>"
-	. $row["user"] . "</td><td>"
-	. $row["time"] . "</td><td>"
-	. $row["ip"] . "</td><td>");
-}
-echo "</table>";
-
-
-// Display Flags.
-$results = $db->query('SELECT * FROM flags');
-echo "<table>";
-while ($row = $results->fetchArray()) {
-    echo("<tr><td>"
-	. $row["post"] . "</td><td>"
-	. $row["user"] . "</td><td>"
-	. $row["time"] . "</td><td>"
-	. $row["ip"] . "</td><td>");
-}
-echo "</table>";
-
 ?>

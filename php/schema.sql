@@ -39,7 +39,6 @@ CREATE TABLE likes (
 );
 
 
-
 /* ----------------- F L A G S -----------------*/
 
 CREATE TABLE flags (
@@ -49,5 +48,15 @@ CREATE TABLE flags (
 	ip VARCHAR(15) NOT NULL,
 	PRIMARY KEY(post, user),
 	FOREIGN KEY (post) REFERENCES posts(id),
+	FOREIGN KEY (user) REFERENCES users(id)
+);
+
+
+/* ---------- V E R I F I C A T I O N ----------*/
+
+CREATE TABLE verifications (
+	verification VARCHAR(32) NOT NULL,
+	user INTEGER NOT NULL,
+	time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	FOREIGN KEY (user) REFERENCES users(id)
 );
