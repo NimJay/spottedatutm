@@ -29,7 +29,7 @@ a {
 	text-decoration: none;
 }
 
-img {
+#peek {
 	position: fixed;
 	top: 10%;
 	left: -10%;
@@ -38,22 +38,22 @@ img {
 
 /*-------------------------------- S I G N U P -------------------------------*/
 
-#signup {
-	padding: 30px;
+.popup {
 	width: 70%;
+	padding: 30px;
 	position: absolute;
 	top: 10%;
 	left: 13%;
 	margin: auto;
 	margin-bottom: 20px;
 	text-align: center;
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
-
 #signup-status {
-	padding: 10px;
+	height: 30px;
+	margin-bottom: 10px;
 	color: rgb(20, 20, 2);
 }
 
@@ -64,15 +64,18 @@ img {
 	width: 60%;
 }
 
+.button {
+	color: rgb(255, 255, 255);
+	background-color: rgba(20, 20, 20, 0.9);
+	cursor: pointer;
+}
+
 #signup-signup {
 	font-size: 1rem;
 	padding: 15px;
 	width: 60%;
 	margin: auto;
 	margin-top: 15px;
-	color: rgb(255, 255, 255);
-	background-color: rgba(20, 20, 20, 0.9);
-	cursor: pointer;
 }
 
 #signup-signup:hover {
@@ -80,5 +83,36 @@ img {
 }
 
 #signup-signup:active {
+	color: rgb(255, 255, 255);
+}
+
+
+/*------------------------------- S U C C E S S ------------------------------*/
+
+#success {display: none;}
+
+#success-email {
+	font-size: 1.2rem;
+	color: rgb(100, 230, 140);
+}
+
+.note {
+	font-size: 0.9rem;
+	color: rgb(140, 140, 140);
+}
+
+#success-proceed {
+	font-size: 1rem;
+	padding: 15px;
+	width: 60%;
+	margin: auto;
+	margin-top: 15px;
+}
+
+#success-proceed:hover {
+	color: rgb(100, 230, 140);
+}
+
+#success-proceed:active {
 	color: rgb(255, 255, 255);
 }

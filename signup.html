@@ -10,6 +10,7 @@
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link type="text/css" rel="stylesheet" href="css/signup.css">
+	<script type="text/javascript" src="js/lib/js.cookie.2.1.1.js"> </script>
 	<script type="text/javascript" src="js/lib/jquery-1.12.3.min.js"> </script>
 	<script type="text/javascript" src="js/signup.js"> </script>
 
@@ -18,15 +19,22 @@
 
 <body>
 
-<a href="index.html"> <img src="images/logo-peek.svg"> </a>
+<a href="index.html" id="peek"> <img src="images/logo-peek.svg"> </a>
 	
 <!-- S I G N U P -->
-<div id="signup">
+<div id="signup" class="popup">
 	<div id="signup-status">  Your e-mail must end in '@mail.utoronto.ca', '@utoronto.ca', or '@utmsu.ca'. </div>
 	<input id="signup-email" type="text" placeholder="email"> <br/>
 	<input id="signup-password" type="password" placeholder="password"> <br/>
 	<input id="signup-confirm" type="password" placeholder="confirm password">
 	<div id="signup-signup" class="button"> sign up </div>
+</div>
+	
+<!-- S U C C E S S -->
+<div id="success" class="popup">
+	Yay! A verification e-mail has been sent to <span id="success-email">placeholder@mail.utoronto.ca</span>. <br/>
+	<span class="note"> Note: The e-mail may end up in your Junk/Spam folder. </span> <br/>
+	<a href="index.html"> <div id="success-proceed" class="button"> proceed </div> </a>
 </div>
 	
 </body>
