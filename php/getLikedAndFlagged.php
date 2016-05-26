@@ -66,9 +66,9 @@ $stmt->close();
 $stmt = $sql->prepare("SELECT * FROM users WHERE id = " . $user);
 $result = $stmt->execute();
 if ($result) {
-	$user = $result->fetchArray();
-	if ($user) { // Invalid combination.
-		$output["user"] = $user;
+	$u = $result->fetchArray();
+	if ($u) { // Invalid combination.
+		$output["user"] = $u;
 	} else {
 		return setAndEcho($output, "error", true);
 	}
