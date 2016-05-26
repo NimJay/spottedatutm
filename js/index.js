@@ -98,6 +98,7 @@ function logout () {
 			console.log(data);
 			unsetLikedAndFlagged();
 			$("#header-logout").fadeOut(300, function () {$("#header-login").fadeIn(300);});
+			$("#header-fire").click();
 		},
 		error: function (error) {
 			console.log(error);
