@@ -14,6 +14,7 @@ var posts = []; // List of loaded Posts.
 
 var loginLock = false; // To be acquired before logging in.
 
+
 /*-------------------------------- S C R O L L -------------------------------*/
 
 function isNearBottom() {
@@ -141,6 +142,8 @@ function closePoster() {
 
 /* To be called when [post] is clicked. */
 function post () {
+	
+	if (!user["verified"]) {$("#poster-status").html("You must verify your account to post."); return false;}
 	
 	if (postingLock) {return false;}
 	postingLock = true;
