@@ -30,6 +30,25 @@ if ($post == NULL) {
 /* --------------- C O N N E C T -------------- */
 
 $sql = new SQLite3("spottedatutm.db");
+
+/* ------------------ U S E R ----------------- */
+
+$stmt = $sql->prepare("SELECT * FROM users WHERE id = " . $user);
+$result = $stmt->execute();
+if ($result) {
+	$u = $result->fetchArray();
+	if ($u) { // Invalid combination.
+		if (!$u["verified"]) {
+			$output["verified"] = false;
+		}
+	} else {
+		return setAndEcho($output, "error", true);
+	}
+} else {return setAndEcho($output, "error", true);}
+
+
+/* ------------------ P O S T ----------------- */
+
 if ($author == NULL) {
 	$stmt = $sql->prepare("INSERT INTO posts (post, user, ip) VALUES ( :post , " . $user . ", '" . $ip . "');");
 } else {
