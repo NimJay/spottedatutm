@@ -10,7 +10,9 @@ error_reporting(~0);
 $output = array( // To be output as JSON.
 	"error" => false,
 	"flagged" => NULL,
-	"liked" => NULL);
+	"liked" => NULL,
+	"user" => NULL);
+
 session_start();
 // Not logged in.
 if (!isset($_SESSION["id"])) {
@@ -57,6 +59,20 @@ if ($result) {
 
 $result->finalize();
 $stmt->close();
+
+
+/* ------------------ U S E R ----------------- */
+
+$stmt = $sql->prepare("SELECT * FROM users WHERE id = " . $user);
+$result = $stmt->execute();
+if ($result) {
+	$user = $result->fetchArray();
+	if ($user) { // Invalid combination.
+		$output["user"] = $user;
+	} else {
+		return setAndEcho($output, "error", true);
+	}
+} else {return setAndEcho($output, "error", true);}
 
 
 /* ----------------- C L O S E ---------------- */ 

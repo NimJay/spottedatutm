@@ -252,6 +252,7 @@ function unflag (id) {
 
 var liked = []; // IDs of liked Posts.
 var flagged = []; // IDs of Flagged Posts.
+var user; // User currently logged in.
 
 function setLikedAndFlagged () {	
 	$.ajax({
@@ -266,6 +267,7 @@ function setLikedAndFlagged () {
 			} else {
 				liked = data.liked;
 				flagged = data.flagged;
+				user = data.user;
 			}
 		},
 		dataType: "json"
