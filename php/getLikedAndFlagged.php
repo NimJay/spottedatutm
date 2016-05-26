@@ -1,22 +1,22 @@
 <?php
 
+require("util/helper.php");
+
 // Error reporting ON.
 ini_set('display_errors', 1);
 error_reporting(~0);
 
 /* --------------- G L O B A L S -------------- */
+$output = array( // To be output as JSON.
+	"error" => false,
+	"flagged" => NULL,
+	"liked" => NULL);
 session_start();
 // Not logged in.
 if (!isset($_SESSION["id"])) {
 	return setAndEcho($output, "invalid", true);
 }
 $user = $_SESSION["id"];
-
-$output = array( // To be output as JSON.
-	"error" => false,
-	"flagged" => NULL,
-	"liked" => NULL);
-
 
 /* ----- P R E P A R E   &   E X E C U T E ---- */
 
