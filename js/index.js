@@ -65,10 +65,12 @@ function login () {
 			} else if (!data.authenticated) {
 				$("#login-status").html("Invalid combination.");
 			} else {
+				setLikedAndFlagged();
 				$("#header-login").fadeOut(300, function () {$("#header-logout").fadeIn(300);});
 				$("#login-status").html("Logged in.");
 				Cookies.set("id", data.id, {path:"/"});
 				closeLogin();
+				$("#header-fire").click();
 			}
 		},
 		error: function (error) {
@@ -94,6 +96,7 @@ function logout () {
 		success: function (data) {
 			console.log("POST php/logout.php");
 			console.log(data);
+			unsetLikedAndFlagged();
 			$("#header-logout").fadeOut(300, function () {$("#header-login").fadeIn(300);});
 		},
 		error: function (error) {
@@ -142,7 +145,7 @@ function post () {
 	
 	
 	$.ajax({
-		type: "GET",
+		type: "POST",
 		url: "php/post.php",
 		data: {"post":post, "author":author},
 		success: function (data) {
@@ -254,7 +257,7 @@ $(function () {
 	$(window).scroll(windowScrolled);
 	
 	// Let's go!
-	if (getUserID()) {$("#header-logout").fadeIn(300);}
+	if (getUserID()) {$("#header-logout").fadeIn(300); setLikedAndFlagged();}
 	else {$("#header-login").fadeIn(300);}
 	if (window.location.hash.substr(1) == "new") {
 		$("#header-new").click();

@@ -68,6 +68,7 @@ function showTables() {
 		. $row["id"] . "</td><td>"
 		. $row["post"] . "</td><td>"
 		. $row["author"] . "</td><td>"
+		. $row["user"] . "</td><td>"
 		. $row["time"] . "</td><td>"
 		. $row["likes"] . "</td><td>"
 		. $row["flags"] . "</td><td>"

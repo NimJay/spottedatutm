@@ -5,14 +5,19 @@ ini_set('display_errors', 1);
 error_reporting(~0);
 
 /* --------------- G L O B A L S -------------- */
-
+session_start();
+// Not logged in.
+if (!isset($_SESSION["id"])) {
+	return setAndEcho($output, "invalid", true);
+}
+$user = $_SESSION["id"];
 $ip = $_SERVER['REMOTE_ADDR']; // Client's IP address.
 $output = array("error" => false,
 			   	"invalid" => false,
 			    "flagged" => true); // To be output as JSON.
 // ID of Post.
-if ($_GET['id'] != NULL && is_numeric($_GET['id'])) {
-	$id = $_GET['id'];
+if ($_POST['id'] != NULL && is_numeric($_POST['id'])) {
+	$id = $_POST['id'];
 } else {
 	$output["invalid"] = true;
 	echo json_encode($output);
@@ -25,9 +30,9 @@ if ($_GET['id'] != NULL && is_numeric($_GET['id'])) {
 $sql = new SQLite3("spottedatutm.db");
 
 
-// Check if like exists.
-$stmt = $sql->prepare("SELECT * FROM flags WHERE id = :id AND ip = '" . $ip . "';");
-$stmt->bindValue(":id", $id);
+// Check if flag exists.
+$stmt = $sql->prepare("SELECT * FROM flags WHERE post = :post AND user = " . $user . ";");
+$stmt->bindValue(":post", $id);
 $result = $stmt->execute();
 if ($result) {
 	if (!$result->fetchArray()) {
@@ -41,12 +46,11 @@ if ($result) {
 	return;
 }
 $stmt->close();
-$result->finalize();
 
 
 // Delete like.
-$stmt = $sql->prepare("DELETE FROM flags WHERE id = :id AND ip = '" . $ip . "';");
-$stmt->bindValue(":id", $id);
+$stmt = $sql->prepare("DELETE FROM flags WHERE post = :post AND user = " . $user . ";");
+$stmt->bindValue(":post", $id);
 if (!$stmt->execute()) {
 	$output["error"] = true;
 	echo json_encode($output);

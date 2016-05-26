@@ -5,8 +5,12 @@ ini_set('display_errors', 1);
 error_reporting(~0);
 
 /* --------------- G L O B A L S -------------- */
-
-$ip = $_SERVER['REMOTE_ADDR']; // Client's IP address.
+session_start();
+// Not logged in.
+if (!isset($_SESSION["id"])) {
+	return setAndEcho($output, "invalid", true);
+}
+$user = $_SESSION["id"];
 
 $output = array( // To be output as JSON.
 	"error" => false,
@@ -20,13 +24,13 @@ $sql = new SQLite3("spottedatutm.db");
 
 
 // Liked Posts.
-$stmt = $sql->prepare("SELECT id FROM likes WHERE ip = '" . $ip . "'");
+$stmt = $sql->prepare("SELECT post FROM likes WHERE user = " . $user);
 $result = $stmt->execute();
 
 if ($result) {
 	$liked = array();
 	while ($row = $result->fetchArray()) {
-		$liked[] = $row['id'];
+		$liked[] = $row['post'];
 	}
 	$output["liked"] = $liked;
 } else {
@@ -36,16 +40,15 @@ if ($result) {
 $result->finalize();
 $stmt->close();
 
-
 // Flagged Posts. 
-$stmt = $sql->prepare("SELECT id FROM flags WHERE ip = '" . $ip . "'");
+$stmt = $sql->prepare("SELECT post FROM flags WHERE user = " . $user);
 $result = $stmt->execute();
 
 if ($result) {
 	// Liked posts.
 	$flagged = array();
 	while ($row = $result->fetchArray()) {
-		$flagged[] = $row['id'];
+		$flagged[] = $row['post'];
 	}
 	$output["flagged"] = $flagged;
 } else {

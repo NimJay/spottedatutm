@@ -152,7 +152,7 @@ function like (id) {
 		url: "php/like.php",
 		data: {"id":id},
 		success: function (data) {
-			console.log("Nim: Debug: like.php");
+			console.log("POST php/like.php");
 			console.log(data);
 			
 			if (data.error) {
@@ -163,6 +163,7 @@ function like (id) {
 	
 			}
 		},
+		error: function (error) {console.log(error);},
 		dataType: "json"
 	});	
 }
@@ -177,7 +178,7 @@ function unlike (id) {
 		url: "php/unlike.php",
 		data: {"id":id},
 		success: function (data) {
-			console.log("Nim: Debug: like.php");
+			console.log("POST php/unlike.php");
 			console.log(data);
 			
 			if (data.error) {
@@ -188,6 +189,7 @@ function unlike (id) {
 	
 			}
 		},
+		error: function (error) {console.log(error);},
 		dataType: "json"
 	});	
 }
@@ -215,6 +217,7 @@ function flag (id) {
 				
 			}
 		},
+		error: function (error) {console.log(error);},
 		dataType: "json"
 	});	
 }
@@ -241,6 +244,7 @@ function unflag (id) {
 	
 			}
 		},
+		error: function (error) {console.log(error);},
 		dataType: "json"
 	});	
 }
@@ -266,6 +270,11 @@ function setLikedAndFlagged () {
 		},
 		dataType: "json"
 	});
+}
+
+function unsetLikedAndFlagged () {
+	liked = []; // IDs of liked Posts.
+	flagged = []; // IDs of Flagged Posts.
 }
 
 $(function () {	
