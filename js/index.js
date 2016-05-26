@@ -111,6 +111,12 @@ function getUserID () {
 	return Cookies.get("id", {path:'/'});
 }
 
+function loginOnEnter (event) {
+	if (event.keyCode == 13) {
+		login();
+	}
+}
+
 /*-------------------------------- P O S T E R -------------------------------*/
 
 function openPoster() {
@@ -248,7 +254,8 @@ $(function () {
 	$("#login-close").click(closeLogin);
 	$("#login-login").click(login);
 	$("#header-logout").click(logout);
-	
+	$("#login-email").keyup(loginOnEnter);
+	$("#login-password").keyup(loginOnEnter);
 	// Poster.
 	$("#header-post").click(openPoster);
 	$("#poster-close").click(closePoster);
