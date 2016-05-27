@@ -12,6 +12,8 @@ error_reporting(~0);
 $output = array("error" => false,
 			   	"invalid" => false);
 
+session_save_path('../sessions');
+ini_set('session.gc_probability', 1);
 session_start();
 session_unset();
 session_destroy();

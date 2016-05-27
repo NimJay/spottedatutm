@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
 error_reporting(~0);
 
 /* --------------- G L O B A L S -------------- */
+session_save_path('../sessions');
+ini_set('session.gc_probability', 1);
 session_start();
 // Not logged in.
 if (!isset($_SESSION["id"])) {

@@ -13,6 +13,8 @@ $output = array( // To be output as JSON.
 	"liked" => NULL,
 	"user" => NULL);
 
+session_save_path('../sessions');
+ini_set('session.gc_probability', 1);
 session_start();
 // Not logged in.
 if (!isset($_SESSION["id"])) {

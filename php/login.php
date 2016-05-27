@@ -45,6 +45,10 @@ if ($result) {
 		$output["authenticated"] = true;
 		$output["verified"] = !!$user["verified"];
 		$output["id"] = $user["id"];
+		
+		// Start SESSION!
+		session_save_path('../sessions');
+		ini_set('session.gc_probability', 1);
 		if (!session_start()) {
 			return setAndEcho($output, "error", true);
 		}
