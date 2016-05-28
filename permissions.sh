@@ -1,15 +1,15 @@
 chmod 701 .
-chmod 704 index.html
+chmod 704 *.html
 chmod 704 favicon.ico
 
 # CSS
-chmod 704 css/index.css
+chmod 704 css/*.css
 chmod 701 css
 
 # Images
 chmod 701 images
 chmod 704 images/*.png
-chmod 704 images/logo.svg
+chmod 704 images/*.svg
 
 # JavaScript
 chmod 701 js
