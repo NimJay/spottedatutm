@@ -69,8 +69,8 @@ $output["debug"] = $verification;
 $stmt = $sql->prepare("INSERT INTO verifications (verification, user) VALUES ( \"" . $verification . "\", (SELECT id FROM users WHERE email = :email ));");
 $stmt->bindValue(":email", $email);
 $result = $stmt->execute();
-$email = "To verify your account for SpottedAtUTM, please go here:" . "http://localhost/spottedatutm2/verify.html?verification=" . $verification . "email=" . $email;
-if (!mail($email, 'SpottedAtUTM Verification.', $email)) {
+$message = "To verify your account for SpottedAtUTM, please go here:" . "http://localhost/spottedatutm2/verify.html?verification=" . $verification . "email=" . $email;
+if (!mail($email, 'SpottedAtUTM Verification.', $message)) {
 	return setAndEcho($output, "error", true);
 }
 
