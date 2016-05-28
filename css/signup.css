@@ -36,6 +36,7 @@ a {
 	width: 10%;
 }
 
+
 /*-------------------------------- S I G N U P -------------------------------*/
 
 .popup {
@@ -43,7 +44,7 @@ a {
 	padding: 30px;
 	position: absolute;
 	top: 10%;
-	left: 13%;
+	left: 12.5%;
 	margin: auto;
 	margin-bottom: 20px;
 	text-align: center;
