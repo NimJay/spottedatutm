@@ -66,12 +66,12 @@ function login () {
 			} else if (!data.authenticated) {
 				$("#login-status").html("Invalid combination.");
 			} else {
-				setLikedAndFlagged();
+				function _callback () {$("#header-fire").click();}
+				setLikedAndFlagged(_callback);
 				$("#header-login").fadeOut(300, function () {$("#header-logout").fadeIn(300);});
 				$("#login-status").html("Logged in.");
 				Cookies.set("id", data.id, {path:"/"});
 				closeLogin();
-				$("#header-fire").click();
 			}
 		},
 		error: function (error) {
@@ -237,6 +237,13 @@ function refreshStream() {
 	loadNextPosts(10);
 }
 
+function init() {
+	if (window.location.hash.substr(1) == "new") {
+		$("#header-new").click();
+	} else {
+		$("#header-fire").click();
+	}
+}
 
 $(function () {
 	
@@ -276,11 +283,6 @@ $(function () {
 	$(window).scroll(windowScrolled);
 	
 	// Let's go!
-	if (getUserID()) {$("#header-logout").fadeIn(300); setLikedAndFlagged();}
-	else {$("#header-login").fadeIn(300);}
-	if (window.location.hash.substr(1) == "new") {
-		$("#header-new").click();
-	} else {
-		$("#header-fire").click();
-	}
+	if (getUserID()) {$("#header-logout").fadeIn(300); setLikedAndFlagged(init);}
+	else {$("#header-login").fadeIn(300); init();}
 });

@@ -254,7 +254,7 @@ var liked = []; // IDs of liked Posts.
 var flagged = []; // IDs of Flagged Posts.
 var user; // User currently logged in.
 
-function setLikedAndFlagged () {	
+function setLikedAndFlagged (callback) {
 	$.ajax({
 		type: "GET",
 		url: "php/getLikedAndFlagged.php",
@@ -270,6 +270,7 @@ function setLikedAndFlagged () {
 				user = data.user;
 			}
 		},
+		complete: callback,
 		dataType: "json"
 	});
 }
