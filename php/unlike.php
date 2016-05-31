@@ -33,8 +33,8 @@ $sql = new SQLite3("spottedatutm.db");
 
 
 // Check if like exists.
-$stmt = $sql->prepare("SELECT * FROM likes WHERE id = :id AND user = " . $user . ";");
-$stmt->bindValue(":id", $id);
+$stmt = $sql->prepare("SELECT * FROM likes WHERE post = :post AND user = " . $user . ";");
+$stmt->bindValue(":post", $id);
 $result = $stmt->execute();
 if ($result) {
 	if (!$result->fetchArray()) {
