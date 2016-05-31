@@ -1,4 +1,4 @@
-/* ----------------- U S E R S -----------------*/
+/* ----------------- U S E R S ---------------- */
 
 CREATE TABLE users (
 	id INTEGER NOT NULL PRIMARY KEY,
@@ -10,7 +10,7 @@ CREATE TABLE users (
 
 
 
-/* ----------------- P O S T S -----------------*/
+/* ----------------- P O S T S ---------------- */
 
 CREATE TABLE posts (
 	id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -26,7 +26,7 @@ CREATE TABLE posts (
 
 
 
-/* ----------------- L I K E S -----------------*/
+/* ----------------- L I K E S ---------------- */
 
 CREATE TABLE likes (
 	post INTEGER NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE likes (
 );
 
 
-/* ----------------- F L A G S -----------------*/
+/* ----------------- F L A G S ---------------- */
 
 CREATE TABLE flags (
 	post INTEGER NOT NULL,
@@ -52,11 +52,23 @@ CREATE TABLE flags (
 );
 
 
-/* ---------- V E R I F I C A T I O N ----------*/
+/* --------- V E R I F I C A T I O N S -------- */
 
 CREATE TABLE verifications (
 	verification VARCHAR(32) NOT NULL,
 	user INTEGER NOT NULL,
+	time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	FOREIGN KEY (user) REFERENCES users(id)
+);
+
+
+
+/* ---------------- R E S E T S --------------- */
+
+CREATE TABLE resets (
+	reset VARCHAR(32) NOT NULL,
+	user INTEGER NOT NULL,
+	password VARCHAR(50),
 	time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	FOREIGN KEY (user) REFERENCES users(id)
 );

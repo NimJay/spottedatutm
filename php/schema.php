@@ -21,11 +21,13 @@ $db->exec("DROP TABLE posts;");
 $db->exec("DROP TABLE likes;");
 $db->exec("DROP TABLE flags;");
 $db->exec("DROP TABLE verifications;");
+$db->exec("DROP TABLE resets;");
 $db->exec("CREATE TABLE users ( id INTEGER NOT NULL PRIMARY KEY, email VARCHAR(255) NOT NULL, password VARCHAR(50), birth TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, verified BOOLEAN NOT NULL );");
 $db->exec("CREATE TABLE posts ( id INTEGER PRIMARY KEY AUTOINCREMENT, post VARCHAR(500) NOT NULL, author VARCHAR(100), user INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, likes UNSIGNED BIG INT DEFAULT 0, flags INTEGER DEFAULT 0, ip VARCHAR(15), FOREIGN KEY (user) REFERENCES users(id) );");
 $db->exec("CREATE TABLE likes ( post INTEGER NOT NULL, user INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ip VARCHAR(15) NOT NULL, PRIMARY KEY(post, user), FOREIGN KEY (post) REFERENCES posts(id), FOREIGN KEY (user) REFERENCES users(id) );");
 $db->exec("CREATE TABLE flags ( post INTEGER NOT NULL, user INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, ip VARCHAR(15) NOT NULL, PRIMARY KEY(post, user), FOREIGN KEY (post) REFERENCES posts(id), FOREIGN KEY (user) REFERENCES users(id) );");
 $db->exec("CREATE TABLE verifications ( verification VARCHAR(32) NOT NULL, user INTEGER NOT NULL, time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, FOREIGN KEY (user) REFERENCES users(id) );");
+$db->exec("CREATE TABLE resets ( reset VARCHAR(32) NOT NULL, user INTEGER NOT NULL, password VARCHAR(50), time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, FOREIGN KEY (user) REFERENCES users(id) );");
 
 // Insert the initial user, and posts.
 $db->exec("DELETE FROM users WHERE 1=1");
@@ -109,6 +111,19 @@ function showTables() {
 		echo("<tr><td>"
 		. $row["verification"] . "</td><td>"
 		. $row["user"] . "</td><td>"
+		. $row["time"] . "</td></tr>");
+	}
+	echo "</table>";
+	
+		
+	// Display Verifcations.
+	$results = $db->query('SELECT * FROM resets');
+	echo "<table>";
+	while ($row = $results->fetchArray()) {
+		echo("<tr><td>"
+		. $row["reset"] . "</td><td>"
+		. $row["user"] . "</td><td>"
+		. $row["password"] . "</td><td>"
 		. $row["time"] . "</td></tr>");
 	}
 	echo "</table>";
