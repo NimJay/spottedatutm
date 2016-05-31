@@ -140,10 +140,18 @@ function closePoster() {
 	$("#poster").fadeOut(300);
 }
 
+function posterStatusUnverified () {
+	$("#poster-status").html(
+		"You must verify your account to post. <br/>" + 
+		"<a href='php/resendVerification.php?email=" + user.email + "'" + 
+		"target='_blank' id='poster-resendverification'> Resend verification e-mail. </a>"
+	);
+}
+
 /* To be called when [post] is clicked. */
 function post () {
 	
-	if (!user["verified"]) {$("#poster-status").html("You must verify your account to post."); return false;}
+	if (!user["verified"]) {posterStatusUnverified(); return false;}
 	
 	if (postingLock) {return false;}
 	postingLock = true;
