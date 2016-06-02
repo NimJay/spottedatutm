@@ -8,7 +8,6 @@ function timePhrase (time) {
 						 time.substring(14, 16), time.substring(17, 19));
 	
 	var sec = (now - posted) / 1000; // Difference in seconds.
-	console.log(sec);
 	if (sec < 10) {return "a few seconds ago"}
 	
 	var min = sec / 60; // Difference in minutes.
@@ -22,7 +21,6 @@ function timePhrase (time) {
 	if (hour < 23) {return "some hours ago"}
 	
 	var day = hour / 24; // Difference in days.
-	console.log(day);
 	if (day < 2) {return "yesterday"}
 	if (day < 6) {return "a few days ago"}
 	if (day < 12) {return "about a week ago"}
@@ -35,6 +33,6 @@ function timePhrase (time) {
 	var year = month / 30; // Difference in years.
 	if (year < 2) {return "about a year ago"}
 	if (year < 5) {return "a few years ago"}
-	console.log(min);console.log(hour);
+	
 	return "old-ass post";
 }
