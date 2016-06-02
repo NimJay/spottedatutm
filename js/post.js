@@ -12,6 +12,17 @@ function Post (id, post, author, time, likes, flags) {
 	this.liked = (liked.indexOf(id) != -1);
 }
 
+function commentToHTML (id, post, comment, author, likes, time) {
+	if (author == null || author == "") {author = "Anonymous"}
+	return '<div id="comment-"' + id + ' class="comment">' +
+			'<span class="comment-comment">' + comment + ' </span> <br/>' +
+			'<span class="comment-author">' + author + ' </span> <br/>' + 
+			'<span class="comment-time">' + timePhrase(time) + ' </span> <br/>' + 
+			'<span class="comment-likes">' + likes + '</span>' +
+			'<img class="comment-like" src="images/like-comment-0.png">' +
+		'</div>';
+}
+
 Post.prototype.toHTML = function () {
 	return '<div id="post-' + this.id + '" class="post">' +
 				'<div class="post-post">' + this.post + '</div>' +
@@ -26,8 +37,21 @@ Post.prototype.toHTML = function () {
 					'<img class="post-actions-like" src="images/like-' +
 						(this.liked * 1) +
 					'.png" title="like">' +
-				'</div>' +
+				'</div>' + 
+			'</div>' +
+			'<div class="comments">' +
+				commentToHTML(1, this.id, "Who even posted this?", "Gerald", 1, "2016-05-18 15:59:57") +
+				commentToHTML(2, this.id, "lol.", "", 3, "2016-05-18 15:59:57") +
+				commentToHTML(3, this.id, "Why do I feel like I know the OP?", "Kadri", 3, "2016-05-18 15:59:57") +
+				commentToHTML(4, this.id, "Anyone selling a UPass?", "jasmit", 0, "2016-05-18 15:59:57") +
+				commentToHTML(5, this.id, "lmao", "Anonymous", 0, "2016-05-18 15:59:57") +
+			'</div>' +
+			'<div class="commenter">' +
+				'<textarea class="commenter-text"></textarea>' +
+				'<input type="text" class="commenter-author" placeholder="author (optional)">' +
+				'<div class="commenter-comment button">comment</div>' +
 			'</div>';
+			$(".comments").fadeOut();
 }
 
 Post.prototype.appendToElement = function (element) {
