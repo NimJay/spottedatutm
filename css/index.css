@@ -155,7 +155,14 @@ textarea {
 	padding: 20px;
 	width: 80%;
 	margin: auto;
-	background-color: rgb(250, 255, 240);	
+	
+}
+
+.comments-show {
+	font-size: 0.8rem;
+	text-align: center;
+	cursor: pointer;
+	color: rgb(100, 100, 100);
 }
 
 .comment {
@@ -174,6 +181,8 @@ textarea {
 
 
 .comment-likes {
+	position: relative;
+	bottom: 2px;
 	font-size: 0.8rem;
 	color: rgb(100, 100, 100);
 }
@@ -188,7 +197,7 @@ textarea {
 /*----------------------------- C O M M E N T E R ----------------------------*/
 
 .commenter {
-	/* display: none; */
+	display: none;
 	font-size: 0.9rem;
 	width: 80%;
 	padding: 20px;
@@ -248,7 +257,7 @@ textarea {
 
 .button {
 	color: rgb(255, 255, 255);
-	background-color: rgba(20, 20, 20, 0.9);
+	background-color: rgba(20, 20, 20, 0.93);
 	cursor: pointer;
 }
 
