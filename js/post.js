@@ -10,17 +10,14 @@ function Post (id, post, author, time, likes, flags) {
 	this.flags = flags;
 	this.flagged = (flagged.indexOf(id) != -1);
 	this.liked = (liked.indexOf(id) != -1);
-}
-
-function commentToHTML (id, post, comment, author, likes, time) {
-	if (author == null || author == "") {author = "Anonymous"}
-	return '<div id="comment-"' + id + ' class="comment">' +
-			'<span class="comment-comment">' + comment + ' </span> <br/>' +
-			'<span class="comment-author">' + author + ' </span> <br/>' + 
-			'<span class="comment-time">' + timePhrase(time) + ' </span> <br/>' + 
-			'<span class="comment-likes">' + likes + '</span>' +
-			'<img class="comment-like" src="images/like-comment-0.png">' +
-		'</div>';
+	this.comments = [];
+	// Nim: Debug: Placeholder comments.
+	this.comments.push(new Comment(1, this.id, "Who even posted this?", "Gerald", "2016-05-18 15:59:57", 1));
+	this.comments.push(new Comment(2, this.id, "lol.", "", "2016-05-18 15:59:57", 3));
+	this.comments.push(new Comment(3, this.id, "Why do I feel like I know the OP?", "Kadri", "2016-05-30 15:59:57", 3));
+	this.comments.push(new Comment(4, this.id, "Anyone selling a UPass?", "jasmit", "2016-06-01 15:59:57", 0));
+	this.comments.push(new Comment(5, this.id, "lmao", "Anonymous", "2016-06-02 11:00:00", 0));
+	
 }
 
 Post.prototype.toHTML = function () {
@@ -39,14 +36,10 @@ Post.prototype.toHTML = function () {
 					'.png" title="like">' +
 				'</div>' + 
 			'</div>' +
-			'<div class="comments">' +
-				commentToHTML(1, this.id, "Who even posted this?", "Gerald", 1, "2016-05-18 15:59:57") +
-				commentToHTML(2, this.id, "lol.", "", 3, "2016-05-18 15:59:57") +
-				commentToHTML(3, this.id, "Why do I feel like I know the OP?", "Kadri", 3, "2016-05-18 15:59:57") +
-				commentToHTML(4, this.id, "Anyone selling a UPass?", "jasmit", 0, "2016-05-18 15:59:57") +
-				commentToHTML(5, this.id, "lmao", "Anonymous", 0, "2016-05-18 15:59:57") +
+			'<div class="comments" id="comments-' + this.id + '">' +
+				'<div class="comments-show">show comments</div>' +
 			'</div>' +
-			'<div class="commenter">' +
+			'<div class="commenter" id="commenter-' + this.id + '">' +
 				'<textarea class="commenter-text"></textarea>' +
 				'<input type="text" class="commenter-author" placeholder="author (optional)">' +
 				'<div class="commenter-comment button">comment</div>' +
@@ -110,13 +103,38 @@ Post.prototype.appendToElement = function (element) {
 		$(this).attr("src", "images/like-" + (1 * !post.liked) + ".png");
 	}, function (e) {
 		$(this).attr("src", "images/like-" + (1 * post.liked) + ".png");
-	})
+	});
 	
 	$("#post-" + this.id + " .post-actions-flag").hover(function (e) {
 		$(this).attr("src", "images/flag-" + (1 * !post.flagged) + ".png");
 	}, function (e) {
 		$(this).attr("src", "images/flag-" + (1 * post.flagged) + ".png");
-	})
+	});
+
+	// Make [show comments] buttons functional.
+	$("#comments-" + this.id + " .comments-show").click(
+		function () {
+			$(this).hide();
+			post.loadComments();
+		}
+	)
+}
+
+
+/*-------------------------- G E T   C O M M E N T S -------------------------*/
+
+Post.prototype.loadComments = function () {
+	this.showComments();
+}
+
+
+Post.prototype.showComments = function () {
+	for (i in this.comments) {
+		this.comments[i].appendToElement($("#comments-" + this.id));
+	}
+	
+	// Show commenter.
+	$("#commenter-" + this.id).show();
 }
 
 
@@ -231,9 +249,12 @@ function unflag (id) {
 }
 
 
+/*------------------------------ S E T   U S E R -----------------------------*/
+
 var liked = []; // IDs of liked Posts.
 var flagged = []; // IDs of Flagged Posts.
 var user; // User currently logged in.
+var likedComments = []; // IDs of liked Comments.
 
 function setLikedAndFlagged (callback) {
 	$.ajax({
