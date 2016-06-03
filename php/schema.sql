@@ -62,7 +62,6 @@ CREATE TABLE verifications (
 );
 
 
-
 /* ---------------- R E S E T S --------------- */
 
 CREATE TABLE resets (
@@ -72,3 +71,20 @@ CREATE TABLE resets (
 	time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	FOREIGN KEY (user) REFERENCES users(id)
 );
+
+
+/* -------------- C O M M E N T S ------------- */
+
+CREATE TABLE comments (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	comment VARCHAR(500) NOT NULL,
+	author VARCHAR(100),
+	post INTEGER NOT NULL,
+	user INTEGER NOT NULL,
+	time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	likes UNSIGNED BIG INT DEFAULT 0,
+	ip VARCHAR(15),
+	FOREIGN KEY (post) REFERENCES posts(id),
+	FOREIGN KEY (user) REFERENCES users(id)
+);
+
