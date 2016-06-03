@@ -118,7 +118,7 @@ function showTables() {
 	echo "</table>";
 	
 		
-	// Display Verifcations.
+	// Display Resets.
 	$results = $db->query('SELECT * FROM resets');
 	echo "<table>";
 	while ($row = $results->fetchArray()) {
@@ -126,6 +126,23 @@ function showTables() {
 		. $row["reset"] . "</td><td>"
 		. $row["user"] . "</td><td>"
 		. $row["password"] . "</td><td>"
+		. $row["time"] . "</td></tr>");
+	}
+	echo "</table>";
+	
+	
+	// Display Comments.
+	$results = $db->query('SELECT * FROM comments');
+	echo "<table>";
+	while ($row = $results->fetchArray()) {
+		echo("<tr><td>"
+		. $row["id"] . "</td><td>"
+		. $row["comment"] . "</td><td>"
+		. $row["author"] . "</td><td>"
+		. $row["post"] . "</td><td>"
+		. $row["user"] . "</td><td>"
+		. $row["likes"] . "</td><td>"
+		. $row["ip"] . "</td><td>"
 		. $row["time"] . "</td></tr>");
 	}
 	echo "</table>";
