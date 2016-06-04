@@ -15,8 +15,8 @@ Comment.prototype.toHTML = function () {
 			'<span class="comment-comment">' + this.comment + ' </span> <br/>' +
 			'<span class="comment-author">' + this.author + ' </span> <br/>' + 
 			'<span class="comment-time">' + timePhrase(this.time) + ' </span> <br/>' + 
-			'<span class="comment-likes">' + this.likes + '</span>' +
-			'<img class="comment-like" src="images/like-comment-0.png">' +
+			/* '<span class="comment-likes">' + this.likes + '</span>' + 
+			'<img class="comment-like" src="images/like-comment-0.png">' + */
 		'</div>';
 }
 
