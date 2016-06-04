@@ -54,7 +54,7 @@ Comment.prototype.appendToElement = function (element) {
 		$(this).attr("src", "images/like-comment-" + (1 * !comment.liked) + ".png");
 	}, function (e) {
 		$(this).attr("src", "images/like-comment-" + (1 * comment.liked) + ".png");
-	})
+	});
 }
 
 

@@ -110,7 +110,68 @@ Post.prototype.appendToElement = function (element) {
 			$(this).hide();
 			post.loadComments();
 		}
-	)
+	);
+	
+	// Make [comment] button functional.
+	$("#commenter-" + this.id + " .commenter-comment").click(
+		function () {
+			comment(post);
+		}
+	);
+}
+
+
+/*------------------------------- C O M M E N T ------------------------------*/
+
+var commentLock = false; // To be acquired before commenting.
+
+function comment (post) {
+	
+	// Must be logged in.
+	if (!getUserID()) {
+		$("#login-status").html("You must be logged in to comment.");
+		return openLogin();
+	}
+	
+	// Variables.
+	var id = post.id;
+	var comment = $("#commenter-" + id + " .commenter-text").val();
+	var author = $("#commenter-" + id + " .commenter-author").val();
+	if (comment == "") {return false;}
+	
+	// Lock.
+	if (commentLock) {return false;}
+	commentLock = true;	
+	$("#commenter-" + id + " .commenter-comment").css("backgroundColor", "rgba(20, 20, 20, 0.1)");
+	
+	$.ajax({
+		type: "POST",
+		url: "php/comment.php",
+		data: {"post":id, "comment":comment, "author":author},
+		success: function (data) {
+			console.log("POST php/comment.php");
+			console.log(data);
+			
+			if (data.error) {
+				// Error.
+				
+			} else if (data.invalid) {
+				// Invalid.
+				
+			} else if (!data.verified) {
+				// Not verified.
+				
+			} else {
+				// Success!
+				post.loadComments();
+				$("#commenter-" + id + " .commenter-text").val("");
+			}
+		},
+		complete: function () {
+			$("#commenter-" + id + " .commenter-comment").css("backgroundColor", "rgba(20, 20, 20, 0.93)");
+		},
+		dataType: "json"
+	});	
 }
 
 
@@ -131,6 +192,7 @@ Post.prototype.loadComments = function () {
 			} else if (data.invalid) {
 				// Invalid.
 			} else {
+				post.comments = []; // Empty comments.
 				var c; // Current comment.
 				for (i in data.comments) {
 					c = data.comments[i];
@@ -146,6 +208,7 @@ Post.prototype.loadComments = function () {
 
 
 Post.prototype.showComments = function () {
+	$("#comments-" + this.id).html(""); // Clear.
 	for (i in this.comments) {
 		this.comments[i].appendToElement($("#comments-" + this.id));
 	}
@@ -156,7 +219,6 @@ Post.prototype.showComments = function () {
 
 
 /*---------------------------------- L I K E ---------------------------------*/
-
 
 function like (id) {
 	
@@ -209,6 +271,7 @@ function unlike (id) {
 		dataType: "json"
 	});	
 }
+
 
 /*---------------------------------- F L A G ---------------------------------*/
 
