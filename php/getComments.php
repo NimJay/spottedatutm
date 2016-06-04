@@ -21,7 +21,7 @@ $post = $_GET["post"];
 /* ----- P R E P A R E   &   E X E C U T E ---- */
 
 $sql = new SQLite3("spottedatutm.db");
-$stmt = $sql->prepare("SELECT * FROM comments WHERE post = :post ORDER BY time DESC");
+$stmt = $sql->prepare("SELECT * FROM comments WHERE post = :post ORDER BY time");
 $stmt->bindValue(":post", $post);
 $result = $stmt->execute();
 if ($result) {
@@ -31,7 +31,7 @@ if ($result) {
 	while ($row = $result->fetchArray()) {
 		$comments[] = array(
 			"id" => $row['id'],
-			"comment" => htmlspecialchars($row['post']),
+			"comment" => htmlspecialchars($row['comment']),
 			"author" => htmlspecialchars($row['author']),
 			"time" => htmlspecialchars($row['time']),
 			"likes" => $row['likes']);
