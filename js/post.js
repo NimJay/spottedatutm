@@ -10,14 +10,7 @@ function Post (id, post, author, time, likes, flags) {
 	this.flags = flags;
 	this.flagged = (flagged.indexOf(id) != -1);
 	this.liked = (liked.indexOf(id) != -1);
-	this.comments = [];
-	// Nim: Debug: Placeholder comments.
-	this.comments.push(new Comment(1, this.id, "Who even posted this?", "Gerald", "2016-05-18 15:59:57", 1));
-	this.comments.push(new Comment(2, this.id, "lol.", "", "2016-05-18 15:59:57", 3));
-	this.comments.push(new Comment(3, this.id, "Why do I feel like I know the OP?", "Kadri", "2016-05-30 15:59:57", 3));
-	this.comments.push(new Comment(4, this.id, "Anyone selling a UPass?", "jasmit", "2016-06-01 15:59:57", 0));
-	this.comments.push(new Comment(5, this.id, "lmao", "Anonymous", "2016-06-02 11:00:00", 0));
-	
+	this.comments = [];	
 }
 
 Post.prototype.toHTML = function () {
@@ -124,7 +117,31 @@ Post.prototype.appendToElement = function (element) {
 /*-------------------------- G E T   C O M M E N T S -------------------------*/
 
 Post.prototype.loadComments = function () {
-	this.showComments();
+	var post = this;
+	$.ajax({
+		type: "GET",
+		url: "php/getComments.php",
+		data: {"post":this.id},
+		success: function (data) {
+			console.log("POST php/comments.php");
+			console.log(data);
+			
+			if (data.error) {
+				// Error.
+			} else if (data.invalid) {
+				// Invalid.
+			} else {
+				var c; // Current comment.
+				for (i in data.comments) {
+					c = data.comments[i];
+					post.comments.push(new Comment (post.id, c.id, c.comment, c.author, c.time, c.likes));
+				}
+				post.showComments();
+			}
+		},
+		error: function (error) {console.log(error);},
+		dataType: "json"
+	});	
 }
 
 
