@@ -88,3 +88,15 @@ CREATE TABLE comments (
 	FOREIGN KEY (user) REFERENCES users(id)
 );
 
+
+/* --------- C O M M E N T   L I K E S -------- */
+
+CREATE TABLE comment_likes (
+	comment INTEGER NOT NULL,
+	user INTEGER NOT NULL,
+	time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	ip VARCHAR(15) NOT NULL,
+	PRIMARY KEY(comment, user),
+	FOREIGN KEY (comment) REFERENCES comment(id),
+	FOREIGN KEY (user) REFERENCES users(id)
+);
