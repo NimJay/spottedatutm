@@ -92,7 +92,7 @@ function signup () {
 			complete: function () {
 				// Enable posting.
 				signupLock = false;
-				$("#signup-signup").css("backgroundColor", "rgba(20, 20, 20, 0.9)");
+				$("#signup-signup").css("backgroundColor", "rgba(20, 20, 20, 0.93)");
 			},
 			dataType: "json"
 		});

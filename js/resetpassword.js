@@ -75,7 +75,7 @@ function submit () {
 		complete: function () {
 			// Enable posting.
 			forgotLock = false;
-			$("#forgot-submit").css("backgroundColor", "rgba(20, 20, 20, 0.9)");
+			$("#forgot-submit").css("backgroundColor", "rgba(20, 20, 20, 0.93)");
 		},
 		dataType: "json"
 	});

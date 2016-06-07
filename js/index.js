@@ -81,7 +81,7 @@ function login () {
 		complete: function () {
 			// Enable posting.
 			loginLock = false;
-			$("#login-login").css("backgroundColor", "rgba(20, 20, 20, 0.9)");
+			$("#login-login").css("backgroundColor", "rgba(20, 20, 20, 0.93)");
 		},
 		dataType: "json"
 	});
@@ -184,7 +184,7 @@ function post () {
 		complete: function () {
 			// Enable posting.
 			postingLock = false;
-			$("#poster-post").css("backgroundColor", "rgba(20, 20, 20, 0.9)");
+			$("#poster-post").css("backgroundColor", "rgba(20, 20, 20, 0.93)");
 		},
 		dataType: "json"
 	});
