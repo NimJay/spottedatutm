@@ -13,8 +13,8 @@ function Comment (id, post, comment, author, time, likes) {
 Comment.prototype.toHTML = function () {
 	if (this.author == null || this.author == "") {this.author = "Anonymous"}
 	return '<div id="comment-' + this.id + '" class="comment">' +
-			'<span class="comment-comment">' + this.comment + ' </span> <br/>' +
 			'<span class="comment-author">' + this.author + ' </span> <br/>' + 
+			'<span class="comment-comment">' + this.comment + ' </span> <br/>' +
 			'<span class="comment-time">' + timePhrase(this.time) + ' </span> <br/>' + 
 			'<span class="comment-likes">' + this.likes + '</span>' + 
 			'<img class="comment-like" src="images/like-comment-' + (this.liked * 1)+ '.png">' +
