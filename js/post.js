@@ -169,6 +169,7 @@ function comment (post) {
 		},
 		complete: function () {
 			$("#commenter-" + id + " .commenter-comment").css("backgroundColor", "rgba(20, 20, 20, 0.93)");
+			commentLock = false;
 		},
 		dataType: "json"
 	});	
