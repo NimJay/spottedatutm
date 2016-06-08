@@ -196,7 +196,7 @@ Post.prototype.loadComments = function () {
 				var c; // Current comment.
 				for (i in data.comments) {
 					c = data.comments[i];
-					post.comments.push(new Comment (post.id, c.id, c.comment, c.author, c.time, c.likes));
+					post.comments.push(new Comment (c.id, post.id, c.comment, c.author, c.time, c.likes));
 				}
 				post.showComments();
 			}
@@ -349,6 +349,7 @@ function setLikedAndFlagged (callback) {
 			} else {
 				liked = data.liked;
 				flagged = data.flagged;
+				likedComments = data.likedComments;
 				user = data.user;
 			}
 		},
@@ -359,7 +360,8 @@ function setLikedAndFlagged (callback) {
 
 function unsetLikedAndFlagged () {
 	liked = []; // IDs of liked Posts.
-	flagged = []; // IDs of Flagged Posts.
+	flagged = []; // IDs of flagged Posts.
+	likedComments = []; // IDs of liked Comments.
 }
 
 $(function () {	

@@ -2,6 +2,7 @@
 
 function Comment (id, post, comment, author, time, likes) {
 	this.id = id;
+	this.post = post;
 	this.comment = comment;
 	this.author = author;
 	this.time = time;
@@ -15,8 +16,8 @@ Comment.prototype.toHTML = function () {
 			'<span class="comment-comment">' + this.comment + ' </span> <br/>' +
 			'<span class="comment-author">' + this.author + ' </span> <br/>' + 
 			'<span class="comment-time">' + timePhrase(this.time) + ' </span> <br/>' + 
-			/* '<span class="comment-likes">' + this.likes + '</span>' + 
-			'<img class="comment-like" src="images/like-comment-0.png">' + */
+			'<span class="comment-likes">' + this.likes + '</span>' + 
+			'<img class="comment-like" src="images/like-comment-' + (this.liked * 1)+ '.png">' +
 		'</div>';
 }
 
@@ -61,11 +62,54 @@ Comment.prototype.appendToElement = function (element) {
 /*-------------------------- L I K E   C O M M E N T -------------------------*/
 
 function likeComment (id) {
+	// Add id to likedComments if not already added.
+	if (likedComments.indexOf(id) == -1) {likedComments.push(id);}
 	
+	$.ajax({
+		type: "POST",
+		url: "php/likeComment.php",
+		data: {"id":id},
+		success: function (data) {
+			console.log("POST php/likeComment.php");
+			console.log(data);
+			
+			if (data.error) {
+				// Error.
+			} else if (data.invalid) {
+				// Invalid.
+			} else {
+	
+			}
+		},
+		error: function (error) {console.log(error);},
+		dataType: "json"
+	});	
 }
 
 function unlikeComment (id) {
+	// Remove from likedComments if exists.
+	var i = likedComments.indexOf(id);
+	if (i != -1) {likedComments.splice(i, 1);}
 	
+	$.ajax({
+		type: "POST",
+		url: "php/unlikeComment.php",
+		data: {"id":id},
+		success: function (data) {
+			console.log("POST php/unlikeComment.php");
+			console.log(data);
+			
+			if (data.error) {
+				// Error.
+			} else if (data.invalid) {
+				// Invalid.
+			} else {
+	
+			}
+		},
+		error: function (error) {console.log(error);},
+		dataType: "json"
+	});	
 }
 
 
