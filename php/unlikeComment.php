@@ -49,7 +49,7 @@ if ($result) {
 	return setAndEcho($output, "error", true);
 }
 $stmt->close();
-$result->finalize();
+
 
 
 // Delete like.
