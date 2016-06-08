@@ -11,6 +11,7 @@ $output = array( // To be output as JSON.
 	"error" => false,
 	"flagged" => NULL,
 	"liked" => NULL,
+	"likedComments" => NULL,
 	"user" => NULL);
 
 session_save_path('../sessions');
@@ -22,12 +23,12 @@ if (!isset($_SESSION["id"])) {
 }
 $user = $_SESSION["id"];
 
-/* ----- P R E P A R E   &   E X E C U T E ---- */
 
 $sql = new SQLite3("spottedatutm.db");
 
 
-// Liked Posts.
+/* ----------------- L I K E D ---------------- */
+
 $stmt = $sql->prepare("SELECT post FROM likes WHERE user = " . $user);
 $result = $stmt->execute();
 
@@ -44,17 +45,39 @@ if ($result) {
 $result->finalize();
 $stmt->close();
 
-// Flagged Posts. 
+
+/* --------------- F L A G G E D -------------- */
+
 $stmt = $sql->prepare("SELECT post FROM flags WHERE user = " . $user);
 $result = $stmt->execute();
 
 if ($result) {
-	// Liked posts.
+	// Flagged posts.
 	$flagged = array();
 	while ($row = $result->fetchArray()) {
 		$flagged[] = $row['post'];
 	}
 	$output["flagged"] = $flagged;
+} else {
+	$output["error"] = true;
+}
+
+$result->finalize();
+$stmt->close();
+
+
+/* -------- L I K E D   C O M M E N T S ------- */
+
+$stmt = $sql->prepare("SELECT comment FROM comment_likes WHERE user = " . $user);
+$result = $stmt->execute();
+
+if ($result) {
+	// Liked comments.
+	$likedComments = array();
+	while ($row = $result->fetchArray()) {
+		$likedComments[] = $row['comment'];
+	}
+	$output["likedComments"] = $likedComments;
 } else {
 	$output["error"] = true;
 }
