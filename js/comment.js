@@ -37,10 +37,10 @@ Comment.prototype.appendToElement = function (element) {
 		}
 		
 		if (comment.liked) {
-			unlikeComment(comment.id);
+			comment.unlike(comment.id);
 			comment.likes--;
 		} else {
-			likeComment(comment.id);
+			comment.like(comment.id);
 			comment.likes++;
 		}
 		
@@ -61,7 +61,8 @@ Comment.prototype.appendToElement = function (element) {
 
 /*-------------------------- L I K E   C O M M E N T -------------------------*/
 
-function likeComment (id) {
+Comment.prototype.like = function () {
+	var id = this.id;
 	// Add id to likedComments if not already added.
 	if (likedComments.indexOf(id) == -1) {likedComments.push(id);}
 	
@@ -86,7 +87,9 @@ function likeComment (id) {
 	});	
 }
 
-function unlikeComment (id) {
+Comment.prototype.unlike = function () {
+	var id = this.id;
+	
 	// Remove from likedComments if exists.
 	var i = likedComments.indexOf(id);
 	if (i != -1) {likedComments.splice(i, 1);}
