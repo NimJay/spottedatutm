@@ -6,5 +6,6 @@ A web application that allows students of UTM to broadcast anonymous "spots" (me
 - SQLite3 (3.12.1)
 - JQuery (1.12.3)
 
-### Incomplete Demo: <http://cslinux.utm.utoronto.ca/~jayawar9/spottedatutm/>
-### Incomplete Demo: <http://spottedatutm.orgfree.com>
+### SpottedAtUTM 3.0: <http://spottedatutm.com/>
+### SpottedAtUTM 2.0: <http://cslinux.utm.utoronto.ca/~jayawar9/spottedatutm/>
+### SpottedAtUTM 1.0: <http://spottedatutm.orgfree.com>
