@@ -69,7 +69,7 @@ $output["debug"] = $verification;
 $stmt = $sql->prepare("INSERT INTO verifications (verification, user) VALUES ( \"" . $verification . "\", (SELECT id FROM users WHERE email = :email ));");
 $stmt->bindValue(":email", $email);
 $result = $stmt->execute();
-$message = "To verify your account for SpottedAtUTM, please go here: " . "http://cslinux.utm.utoronto.ca/~jayawar9/spottedatutm/php/verify.php?verification=" . $verification . "&email=" . $email;
+$message = "To verify your account for SpottedAtUTM, please go here: " . "http://spottedatutm.com/~jayawar9/spottedatutm/php/verify.php?verification=" . $verification . "&email=" . $email;
 if (!mail($email, 'SpottedAtUTM Verification.', $message)) {
 	return setAndEcho($output, "error", true);
 }

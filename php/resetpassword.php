@@ -55,12 +55,12 @@ $result = $stmt->execute();
 
 
 /* ----------------- E M A I L ---------------- */
-/* Nim: Debug: To be uncommented. And email is to be refined.
-$message = "We, SpottedAtUTM, have received a request to reset your password to " . $password . ". To finalize this reset, please go here: " . "http://cslinux.utm.utoronto.ca/~jayawar9/spottedatutm/php/finalizeReset.php?reset=" . $reset . "&email=" . $email;
+
+$message = "We, SpottedAtUTM, have received a request to reset your password to " . $password . ". To finalize this reset, please go here: " . "http://spottedatutm.com/php/finalizeReset.php?reset=" . $reset . "&email=" . $email;
 if (!mail($email, 'SpottedAtUTM Password Reset', $message)) {
 	return setAndEcho($output, "error", true);
 }
-*/
+
 
 /* ------------- A U   R E V O I R ------------ */
 
