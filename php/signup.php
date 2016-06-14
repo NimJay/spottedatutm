@@ -19,7 +19,7 @@ $output = array("error" => false,
 if (!isset($_POST['email']) || !isset($_POST['password'])) {
 	return setAndEcho($output, "invalid", true);
 }
-$email = $_POST['email'];
+$email = strtolower($_POST['email']);
 $password = $_POST['password']; 
 
 // Use when debugging.

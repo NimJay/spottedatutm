@@ -20,7 +20,7 @@ $output = array("error" => false,
 if (!isset($_GET["email"]) || !isset($_GET["reset"])) {
 	return setAndEcho($output, "invalid", true);
 }
-$email = $_GET["email"];
+$email = strtolower($_GET['email']);
 $reset = $_GET["reset"];
 
 
